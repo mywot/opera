@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<widget xmlns="http://www.w3.org/ns/widgets" id="http://www.mywot.com/wiki/Opera" version="1.4">
+	<name>WOT</name>
+	<description>Web of Trust shows you which websites people trust for safe surfing, shopping and searching on the web.</description>
+	<author href="http://www.mywot.com/" email="info@mywot.com">WOT Services Oy</author>
+	<icon src="skin/fusion/icons/128.png"/>
+	<access origin="http://www.mywot.com/"/>
+	<access origin="http://api.mywot.com/"/>
+	<access origin="https://api.mywot.com/"/>
+</widget>
