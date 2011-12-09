@@ -26,7 +26,7 @@
 */
 
 var wot = {
-	version: 20111107,
+	version: 20111209,
 	platform: "opera",
 	language: "en",		/* default */
 	debug: false,
@@ -36,7 +36,7 @@ var wot = {
 		{ name: 0 },
 		{ name: 1 },
 		{ name: 2 },
-		{ name: 4 },
+		{ name: 4 }
 	],
 
 	reputationlevels: [
