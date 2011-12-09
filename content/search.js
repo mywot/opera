@@ -480,7 +480,11 @@ wot.search = {
 			};
 
 			/* watch for changes */
-			frame.document.addEventListener("DOMNodeInserted", handler, false);
+			// This timeout is a Workaround for VKontakte's bug / issue 554
+			window.setTimeout(function(){
+				frame.document.addEventListener("DOMNodeInserted", handler, false);
+			}, 500);
+			// seems like my computer very fast so we need delay about 500ms
 		}
 
 		/* opera: scripts aren't being injected to all frames. this checks
