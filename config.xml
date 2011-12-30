@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" id="http://www.mywot.com/wiki/Opera" version="1.5">
+<widget xmlns="http://www.w3.org/ns/widgets" id="http://www.mywot.com/wiki/Opera" defaultlocale="en" version="1.6">
 	<name>WOT</name>
-	<description>Web of Trust shows you which websites people trust for safe surfing, shopping and searching on the web.</description>
+	<description xml:lang="cs">Web of Trust se stará o vaši bezpečnost při surfování a nakupování na Internetu.</description>
+	<description xml:lang="de">Web of Trust schützt Sie beim Browsen und Shoppen im Internet. Die farblich codierten Symbole helfen Ihnen, Online-Betrug aus dem Weg zu gehen und Betrügereien, unzuverlässige Shopping Sites und Sicherheitsrisiken bereits im Vorfeld zu erkennen.</description>
+	<description xml:lang="en">Web of Trust shows you which websites people trust for safe surfing, shopping and searching on the web.</description>
+	<description xml:lang="es">Web of Trust le mantiene seguro mientras navega y compra en Internet. Los símbolos con código de color de WOT le ayudan a evitar timos en línea, robo de identidad, sitios de compra no fiables y amenazas de seguridad antes de que haga clic.</description>
+	<description xml:lang="fi">Web of Trust suojelee sinua, kun käytät Internetiä ja teet verkko-ostoksia. WOT osoittaa sivuston luokituksen värillisillä kuvakkeilla ja auttaa välttämään verkkohuijauksia, epäluotettavia verkkokauppoja ja muita tietoturvauhkia.</description>
+	<description xml:lang="fr">Web of Trust vous permet de naviguer et d'acheter sur Internet en toute sécurité.</description>
+	<description xml:lang="it">Web of Trust consente di esplorare i siti Web e di fare acquisti su Internet in tutta sicurezza.</description>
+	<description xml:lang="ja">Web of Trustを利用すれば、安全にWebサイトを見たりオンラインショッピングを楽しんだりすることができます。 分かりやすく色分けされたWOTアイコンによって、サイトへのリンクをクリックする前に、オンライン詐欺、なりすまし、不審なショッピングサイト、セキュリティの脅威などを回避できます。 お使いのOperaに今すぐWOTをインストールして、安全にインターネットをお楽しみください。</description>
+	<description xml:lang="pl">Web of Trust pozwala Ci bezpiecznie przeglądać witryny i dokonywać zakupów w internecie. Różnokolorowe symbole WOT pomagają uniknąć oszustw, prób kradzieży tożsamości, podejrzanych sklepów internetowych i innych zagrożeń, jeszcze zanim klikniesz.</description>
+	<description xml:lang="pt_BR">A Web of Trust garante sua segurança ao navegar e comprar na Internet. Os símbolos da WOT utilizam um código de cores para ajudá-lo a evitar, antes do primeiro clique, golpes on-line, sites de compras não confiáveis e ameaças à segurança.</description>
+	<description xml:lang="ru">WOT защищает вас, когда вы пользуетесь Интернетом и совершаете покупки в Интернет-магазинах.</description>
+	<description xml:lang="zh_CN">当您在网上浏览和购物时，Web of Trust 可以保护您的安全。 在您单击网站链接之前，WOT 用颜色标记的符号可帮助您远离在线诈骗、身份信息窃取、不可靠的购物网站以及安全威胁。 现在就将 WOT 添加到 Opera，更加安全地网上冲浪吧！</description>
+	<description xml:lang="zh_TW">Web of Trust 能維護您在網路上瀏覽與購物的安全性。 WOT 的顏色編碼標誌能幫助您在點擊之前避免線上詐騙、盜用身分、不可靠的購物網站與安全威脅。 讓您更安全地瀏覽網路，現在就將 WOT 加入您的 Opera 吧。</description>
 	<author href="http://www.mywot.com/" email="info@mywot.com">WOT Services Oy</author>
 	<icon src="skin/fusion/icons/128.png"/>
 	<access origin="http://www.mywot.com/"/>
