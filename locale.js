@@ -30,11 +30,11 @@ $.extend(wot, { locale: {
 	  	"ja": "ja",
 	  	"pl": "pl",
 		"pt": "pt_BR",
-	  	"pt_BR": "pt_BR",
+	  	"pt_br": "pt_BR",
 	  	"ru": "ru",
 	  	"sv": "sv",
-	  	"zh_CN": "zh_CN",
-	  	"zh_TW": "zh_TW"
+	  	"zh_cn": "zh_CN",
+	  	"zh_tw": "zh_TW"
 	},
 
 	loadlocale: function(ondone)
@@ -55,7 +55,7 @@ $.extend(wot, { locale: {
 
 	setlocale: function()
 	{
-		var lang = (window.navigator.language || "en").replace(/-/g, "_");
+		var lang = (window.navigator.language || "en").replace(/-/g, "_").toLowerCase();
 
 		if (!this.languages[lang]) {
 			lang = lang.replace(/_.*$/, "");
