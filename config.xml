@@ -14,6 +14,7 @@
 	<description xml:lang="ru">WOT защищает вас, когда вы пользуетесь Интернетом. Плагин добавляет цветные маркеры безопасности к ссылкам в Google, Yandex, Facebook, Vkontakte, Odnoklassniki, Mail.ru, Wikipedia и в других популярных сервисах.</description>
 	<description xml:lang="zh-CN">当您在网上浏览和购物时，Web of Trust 可以保护您的安全。 在您单击网站链接之前，WOT 用颜色标记的符号可帮助您远离在线诈骗、身份信息窃取、不可靠的购物网站以及安全威胁。 现在就将 WOT 添加到 Opera，更加安全地网上冲浪吧！</description>
 	<description xml:lang="zh-TW">Web of Trust 能維護您在網路上瀏覽與購物的安全性。 WOT 的顏色編碼標誌能幫助您在點擊之前避免線上詐騙、盜用身分、不可靠的購物網站與安全威脅。 讓您更安全地瀏覽網路，現在就將 WOT 加入您的 Opera 吧。</description>
+	<description xml:lang="sv">Med Web of Trust kan du vara säker när du surfar och handlar på Internet. WOT hjälper dig att undvika onlinebedrägerier, identitetsstöld, opålitliga onlinebutiker och säkerhetsrisker redan innan du klickar.</description>
 	<author href="http://www.mywot.com/" email="info@mywot.com">WOT Services Oy</author>
 	<icon src="skin/fusion/icons/128.png"/>
 	<access origin="http://www.mywot.com/"/>
