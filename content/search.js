@@ -490,10 +490,15 @@ wot.search = {
 		/* opera: scripts aren't being injected to all frames. this checks
 			the frames for the same search rule, which should be enough */
 		for (var i = 0; i < frame.frames.length; ++i) {
-			this.onprocess({
+			try {
+				this.onprocess({
 					url: frame.frames[i].location.href,
 					rule: data.rule
 				}, frame.frames[i]);
+
+			} catch(e) {
+				// just fu*k off these Opera's insane complains about frames.
+			}
 		}
 	},
 

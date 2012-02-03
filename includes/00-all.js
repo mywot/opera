@@ -26,7 +26,7 @@
 */
 
 var wot = {
-	version: 20120119,
+	version: 20120203,
 	platform: "opera",
 	language: "en",		/* default */
 	debug: false,
@@ -2911,7 +2911,7 @@ wot.url.onload();
 
 /*
 	content/popup.js
-	Copyright © 2009-2011  WOT Services Oy <info@mywot.com>
+	Copyright © 2009-2012  WOT Services Oy <info@mywot.com>
 
 	This file is part of WOT.
 
@@ -3040,46 +3040,6 @@ wot.popup = {
 		}
 	},
 
-	getelemposx: function(elem)
-	{
-	    var curtop = 0;
-
-		try {
-		    if (elem.offsetParent) {
-		        while (elem.offsetParent) {
-		            curtop += elem.offsetLeft;
-		            elem = elem.offsetParent;
-		        }
-		    } else if (elem.x) {
-		        curtop += elem.x;
-		    }
-		} catch (e) {
-			wot.log("popup.getelemposx: failed with " + e + "\n", true);
-		}
-
-	    return curtop;
-	},
-
-	getelemposy: function(elem)
-	{
-	    var curtop = 0;
-
-		try {
-		    if (elem.offsetParent) {
-		        while (elem.offsetParent) {
-		            curtop += elem.offsetTop;
-		            elem = elem.offsetParent;
-		        }
-		    } else if (elem.y) {
-		        curtop += elem.y;
-		    }
-		} catch (e) {
-			wot.log("popup.getelemposx: failed with " + e + "\n", true);
-		}
-
-	    return curtop;
-	},
-
 	updatecontents: function(frame, cached)
 	{
 		try {
@@ -3203,8 +3163,18 @@ wot.popup = {
 			var vscroll = frame.pageYOffset;
 			var hscroll = frame.pageXOffset;
 
-			var y = this.getelemposy(this.target);
-			var x = this.getelemposx(this.target);
+			// more accurate way to calc position
+			// got from http://javascript.ru/ui/offset
+			var elem = this.target;
+			var box = elem.getBoundingClientRect();
+			var body = document.body;
+			var docElem = document.documentElement;
+			var scrollTop = window.pageYOffset || docElem.scrollTop || body.scrollTop;
+			var scrollLeft = window.pageXOffset || docElem.scrollLeft || body.scrollLeft;
+			var clientTop = docElem.clientTop || body.clientTop || 0;
+			var clientLeft = docElem.clientLeft || body.clientLeft || 0;
+			var y  = box.top +  scrollTop - clientTop;
+			var x = box.left + scrollLeft - clientLeft;
 
 			var posy = this.offsety + y + this.target.offsetHeight;
 			var posx = this.offsetx + x + this.target.offsetWidth;
@@ -3842,10 +3812,15 @@ wot.search = {
 		/* opera: scripts aren't being injected to all frames. this checks
 			the frames for the same search rule, which should be enough */
 		for (var i = 0; i < frame.frames.length; ++i) {
-			this.onprocess({
+			try {
+				this.onprocess({
 					url: frame.frames[i].location.href,
 					rule: data.rule
 				}, frame.frames[i]);
+
+			} catch(e) {
+				// just fu*k off these Opera's insane complains about frames.
+			}
 		}
 	},
 
