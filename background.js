@@ -44,7 +44,7 @@ $.extend(wot, { core: {
 		try {
 			this.updatetab(opera.extension.tabs.getFocused(), popup);
 		} catch (e) {
-			wot.log("core.update: failed with " + e + "\n", true);
+			wot.log("core.update: failed with " + e, true);
 		}
 	},
 
@@ -52,7 +52,7 @@ $.extend(wot, { core: {
 	{
 		var url = (tab && tab.url) ? tab.url : "";
 
-		wot.log("core.updatetab: " + url + "\n");
+		wot.log("core.updatetab: " + url);
 
 		if (wot.api.isregistered()) {
 			wot.core.loadratings(url, function(hosts) {
@@ -78,10 +78,11 @@ $.extend(wot, { core: {
 		
 			if (cached.status == wot.cachestatus.ok) {
 				/* reputation */
+				var def_comp = cached.value[wot.default_component];
+
 				var result = wot.getlevel(wot.reputationlevels,
-								cached.value[wot.default_component] ?
-									cached.value[wot.default_component].r :
-									-1).name;
+								(def_comp && def_comp.r != null) ?
+									def_comp.r : -1).name;
 
 				/* additional classes */
 				if (result != "rx") {
@@ -105,7 +106,7 @@ $.extend(wot, { core: {
 			
 			return "default";
 		} catch (e) {
-			wot.log("core.geticon: failed with " + e + "\n", true);
+			wot.log("core.geticon: failed with " + e, true);
 		}
 
 		return "error";
@@ -117,7 +118,7 @@ $.extend(wot, { core: {
 			this.button.icon = wot.geticon(this.geticon(data), 19,
 									wot.prefs.get("accessible"));
 		} catch (e) {
-			wot.log("core.seticon: failed with " + e + "\n", true);
+			wot.log("core.seticon: failed with " + e, true);
 		}
 	},
 
@@ -147,7 +148,7 @@ $.extend(wot, { core: {
 			
 			this.updatetabwarning(tab, data);
 		} catch (e) {
-			wot.log("core.updatetabstate: failed with " + e + "\n", true);
+			wot.log("core.updatetabstate: failed with " + e, true);
 		}
 	},
 
@@ -222,7 +223,7 @@ $.extend(wot, { core: {
 				}
 			}
 		} catch (e) {
-			wot.log("core.setusermessage: failed with " + e + "\n", true);
+			wot.log("core.setusermessage: failed with " + e, true);
 		}
 	},
 
@@ -257,7 +258,7 @@ $.extend(wot, { core: {
 				}
 			}
 		} catch (e) {
-			wot.log("core.setusercontent: failed with " + e + "\n", true);
+			wot.log("core.setusercontent: failed with " + e, true);
 		}
 	},
 
@@ -272,7 +273,7 @@ $.extend(wot, { core: {
 				wot.prefs.clear("status_level");
 			}
 		} catch (e) {
-			wot.log("core.setuserlevel: failed with " + e + "\n", true);
+			wot.log("core.setuserlevel: failed with " + e, true);
 		}
 	},
 

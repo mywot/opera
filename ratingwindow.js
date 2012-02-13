@@ -38,8 +38,11 @@ $.extend(wot, { ratingwindow: {
 		/* add existing ratings to state */
 		if (data && data.status == wot.cachestatus.ok) {
 			wot.components.forEach(function(item) {
-				if (data.value[item.name] && data.value[item.name].t >= 0) {
-					state[item.name] = { t: data.value[item.name].t };
+
+				var datav = data.value[item.name];
+
+				if (datav && datav.t >= 0) {
+					state[item.name] = { t: datav.t };
 				}
 			});
 		}
@@ -106,7 +109,7 @@ $.extend(wot, { ratingwindow: {
 				return position;
 			}
 		} catch (e) {
-			wot.log("ratingwindow.getrating: failed with " + e + "\n", true);
+			wot.log("ratingwindow.getrating: failed with " + e, true);
 		}
 
 		return -1;
@@ -140,11 +143,11 @@ $.extend(wot, { ratingwindow: {
 				elems[elem] = $("#wot-rating-" + item.name + "-" + elem);
 			});
 
-			var t = -1;
+			var t = -1,
+				wrs = wot.ratingwindow.state[item.name];
 
-			if (wot.ratingwindow.state[item.name] &&
-					wot.ratingwindow.state[item.name].t != null) {
-				t = wot.ratingwindow.state[item.name].t;
+			if (wrs && wrs.t != null) {
+				t = wrs.t;
 			}
 
 			if (t >= 0) {
@@ -165,11 +168,11 @@ $.extend(wot, { ratingwindow: {
 				elems.stack.removeClass("testimony").removeClass("hover");
 			}
 
-			var helptext = "";
+			var helptext = "",
+				cachedv = cached.value[item.name];
 
 			if (t >= 0) {
-				var r = cached.value[item.name] ?
-							cached.value[item.name].r : -1;
+				var r = (cachedv && cachedv.r != null) ? cachedv.r : -1;
 
 				if (r >= 0 && Math.abs(r - t) > 35) {
 					helptext = wot.i18n("ratingwindow", "helptext");
@@ -214,6 +217,9 @@ $.extend(wot, { ratingwindow: {
 
 		/* reputations */
 		wot.components.forEach(function(item) {
+
+			var cachedv = cached.value[item.name];
+
 			if (wot.ratingwindow.settings["show_application_" + item.name]) {
 				$("#wot-rating-" + item.name + ", #wot-rating-" + item.name +
 					"-border").css("display", "block");
@@ -225,14 +231,12 @@ $.extend(wot, { ratingwindow: {
 			$("#wot-rating-" + item.name + "-reputation").attr("reputation",
 				(cached.status == wot.cachestatus.ok) ?
 					wot.getlevel(wot.reputationlevels,
-						cached.value[item.name] ?
-						cached.value[item.name].r : -1).name : "");
+						(cachedv && cachedv.r != null) ? cachedv.r : -1).name : "");
 
 			$("#wot-rating-" + item.name + "-confidence").attr("confidence",
 				(cached.status == wot.cachestatus.ok) ?
 					wot.getlevel(wot.confidencelevels,
-						cached.value[item.name] ?
-						cached.value[item.name].c : -1).name : "");
+						(cachedv && cachedv.c != null)? cachedv.c : -1).name : "");
 		});
 
 		/* ratings */

@@ -1,6 +1,6 @@
 /*
 	content/popup.js
-	Copyright © 2009-2012  WOT Services Oy <info@mywot.com>
+	Copyright © 2009 - 2012  WOT Services Oy <info@mywot.com>
 
 	This file is part of WOT.
 
@@ -142,8 +142,10 @@ wot.popup = {
 			this.offsetheight = 0;
 
 			wot.components.forEach(function(item) {
-				var r = cached.value[item.name] ?
-							cached.value[item.name].r : -1;
+
+				var cachedv = cached.value[item.name];
+
+				var r = (cachedv && cachedv.r != null) ? cachedv.r : -1;
 
 				var elem = frame.document.getElementById("wot-r" + item.name +
 							"-rep" + wot.popup.postfix);
@@ -153,8 +155,7 @@ wot.popup = {
 						wot.getlevel(wot.reputationlevels, r).name);
 				}
 
-				var c = cached.value[item.name] ?
-							cached.value[item.name].c : -1;
+				var c = (cachedv && cachedv.c != null) ? cachedv.c : -1;
 
 				elem = frame.document.getElementById("wot-r" + item.name +
 							"-cnf" + wot.popup.postfix);
@@ -192,7 +193,7 @@ wot.popup = {
 
 			return true;
 		} catch (e) {
-			wot.log("popup.updatecontents: failed with " + e + "\n", true);
+			wot.log("popup.updatecontents: failed with " + e, true);
 		}
 
 		return false;
@@ -265,7 +266,7 @@ wot.popup = {
 			var y  = box.top +  scrollTop - clientTop;
 			var x = box.left + scrollLeft - clientLeft;
 
-			var posy = this.offsety + y + this.target.offsetHeight;
+			var posy = this.offsety + y;// + this.target.offsetHeight;
 			var posx = this.offsetx + x + this.target.offsetWidth;
 
 			if (posy + popupheight > height + vscroll) {
@@ -287,7 +288,7 @@ wot.popup = {
 				this.delayedshow(layer, posy, posx);
 			}
 		} catch (e) {
-			wot.log("popup.show: failed with " + e + "\n", true);
+			wot.log("popup.show: failed with " + e, true);
 		}
 	},
 
@@ -312,10 +313,10 @@ wot.popup = {
 			if (layer && (!version || version == this.version) &&
 					(force || !this.onpopup)) {
 				layer.style.display = "none";
-				wot.log("popup.hide: version = " + version + "\n");
+				wot.log("popup.hide: version = " + version);
 			}
 		} catch (e) {
-			wot.log("popup.hide: failed with " + e + "\n", true);
+			wot.log("popup.hide: failed with " + e, true);
 		}
 	},
 
@@ -348,7 +349,7 @@ wot.popup = {
 			this.onpopup = onpopup;
 			return (elem && attr) ? elem : null;
 		} catch (e) {
-			wot.log("popup.findelem: failed with " + e + "\n", true);
+			wot.log("popup.findelem: failed with " + e, true);
 		}
 
 		return null;
@@ -385,7 +386,7 @@ wot.popup = {
 				}
 			}
 		} catch (e) {
-			wot.log("popup.onmousemove: failed with " + e + "\n", true);
+			wot.log("popup.onmousemove: failed with " + e, true);
 		}
 	},
 
@@ -404,7 +405,7 @@ wot.popup = {
 				}
 			}
 		} catch (e) {
-			wot.log("popup.onclick: failed with " + e + "\n", true);
+			wot.log("popup.onclick: failed with " + e, true);
 		}
 	}
 };
