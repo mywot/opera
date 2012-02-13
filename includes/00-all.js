@@ -26,7 +26,7 @@
 */
 
 var wot = {
-	version: 20120203,
+	version: 20120213,
 	platform: "opera",
 	language: "en",		/* default */
 	debug: false,
@@ -2715,9 +2715,11 @@ wot.warning = {
 			];
 
 			wot.components.forEach(function(item) {
+
+				var cachedv = data.cached.value[item.name];
+
 				var level = wot.getlevel(wot.reputationlevels,
-								data.cached.value[item.name] ?
-									data.cached.value[item.name].r : -1);
+								(cachedv && cachedv.r != null) ? cachedv.r : -1);
 
 				replaces.push({
 					from: "RATINGDESC" + item.name,
@@ -2911,7 +2913,7 @@ wot.url.onload();
 
 /*
 	content/popup.js
-	Copyright © 2009-2012  WOT Services Oy <info@mywot.com>
+	Copyright © 2009 - 2012  WOT Services Oy <info@mywot.com>
 
 	This file is part of WOT.
 
@@ -3053,8 +3055,10 @@ wot.popup = {
 			this.offsetheight = 0;
 
 			wot.components.forEach(function(item) {
-				var r = cached.value[item.name] ?
-							cached.value[item.name].r : -1;
+
+				var cachedv = cached.value[item.name];
+
+				var r = (cachedv && cachedv.r != null) ? cachedv.r : -1;
 
 				var elem = frame.document.getElementById("wot-r" + item.name +
 							"-rep" + wot.popup.postfix);
@@ -3064,8 +3068,7 @@ wot.popup = {
 						wot.getlevel(wot.reputationlevels, r).name);
 				}
 
-				var c = cached.value[item.name] ?
-							cached.value[item.name].c : -1;
+				var c = (cachedv && cachedv.c != null) ? cachedv.c : -1;
 
 				elem = frame.document.getElementById("wot-r" + item.name +
 							"-cnf" + wot.popup.postfix);
@@ -3103,7 +3106,7 @@ wot.popup = {
 
 			return true;
 		} catch (e) {
-			wot.log("popup.updatecontents: failed with " + e + "\n", true);
+			wot.log("popup.updatecontents: failed with " + e, true);
 		}
 
 		return false;
@@ -3176,7 +3179,7 @@ wot.popup = {
 			var y  = box.top +  scrollTop - clientTop;
 			var x = box.left + scrollLeft - clientLeft;
 
-			var posy = this.offsety + y + this.target.offsetHeight;
+			var posy = this.offsety + y;// + this.target.offsetHeight;
 			var posx = this.offsetx + x + this.target.offsetWidth;
 
 			if (posy + popupheight > height + vscroll) {
@@ -3198,7 +3201,7 @@ wot.popup = {
 				this.delayedshow(layer, posy, posx);
 			}
 		} catch (e) {
-			wot.log("popup.show: failed with " + e + "\n", true);
+			wot.log("popup.show: failed with " + e, true);
 		}
 	},
 
@@ -3223,10 +3226,10 @@ wot.popup = {
 			if (layer && (!version || version == this.version) &&
 					(force || !this.onpopup)) {
 				layer.style.display = "none";
-				wot.log("popup.hide: version = " + version + "\n");
+				wot.log("popup.hide: version = " + version);
 			}
 		} catch (e) {
-			wot.log("popup.hide: failed with " + e + "\n", true);
+			wot.log("popup.hide: failed with " + e, true);
 		}
 	},
 
@@ -3259,7 +3262,7 @@ wot.popup = {
 			this.onpopup = onpopup;
 			return (elem && attr) ? elem : null;
 		} catch (e) {
-			wot.log("popup.findelem: failed with " + e + "\n", true);
+			wot.log("popup.findelem: failed with " + e, true);
 		}
 
 		return null;
@@ -3296,7 +3299,7 @@ wot.popup = {
 				}
 			}
 		} catch (e) {
-			wot.log("popup.onmousemove: failed with " + e + "\n", true);
+			wot.log("popup.onmousemove: failed with " + e, true);
 		}
 	},
 
@@ -3315,7 +3318,7 @@ wot.popup = {
 				}
 			}
 		} catch (e) {
-			wot.log("popup.onclick: failed with " + e + "\n", true);
+			wot.log("popup.onclick: failed with " + e, true);
 		}
 	}
 };
@@ -3409,7 +3412,7 @@ wot.search = {
 
 			return true;
 		} catch (e) {
-			wot.log("search.matchelement: failed with " + e + "\n", true);
+			wot.log("search.matchelement: failed with " + e, true);
 		}
 
 		return false;
@@ -3611,7 +3614,7 @@ wot.search = {
 				insertpoint[0].appendChild(style);
 			}
 		} catch (e) {
-			wot.log("search.addstyle: failed with " + e + "\n", true);
+			wot.log("search.addstyle: failed with " + e, true);
 		}
 	},
 
@@ -3623,7 +3626,9 @@ wot.search = {
 	getreputation: function(data)
 	{
 		try {
-			var r = data[0] ? data[0].r : -1;
+			var def_comp = data[wot.default_component];
+
+			var r = (def_comp && def_comp.r != null) ? def_comp.r : -1;
 
 			if (this.settings.search_type == wot.searchtypes.trustworthiness) {
 				return r;
@@ -3635,31 +3640,32 @@ wot.search = {
 					return;
 				}
 
-				switch (wot.search.settings.search_type) {
-				case wot.searchtypes.optimized:
-					var type = wot.getwarningtypeforcomponent(item.name, data,
-									wot.search.settings);
+				var comp_obj = data[item.name];
 
-					if (type && data[item.name] && r > data[item.name].r) {
-						r = data[item.name].r;
-					}
-					break;
-				case wot.searchtypes.worst:
-					if (data[item.name] && data[item.name].r >= 0 &&
-							r > data[item.name].r) {
-						r = data[item.name].r;
-					}
-					break;
-				default:
-					wot.log("search.getreputation: unknown search type: " +
-						wot.search.settings.search_type + "\n");
-					return;
+				switch (wot.search.settings.search_type) {
+					case wot.searchtypes.optimized:
+						var type = wot.getwarningtypeforcomponent(item.name, data,
+										wot.search.settings);
+
+						if (type && comp_obj && r > comp_obj.r) {
+							r = comp_obj.r;
+						}
+						break;
+					case wot.searchtypes.worst:
+						if (comp_obj && comp_obj.r >= 0 && r > comp_obj.r) {
+							r = comp_obj.r;
+						}
+						break;
+					default:
+						wot.log("search.getreputation: unknown search type: " +
+							wot.search.settings.search_type);
+						return;
 				}
 			});
 
 			return r;
 		} catch (e) {
-			wot.log("search.getreputation: failed with " + e + "\n", true);
+			wot.log("search.getreputation: failed with " + e, true);
 		}
 
 		return -1;
@@ -3718,7 +3724,7 @@ wot.search = {
 				}
 			});
 		} catch (e) {
-			wot.log("search.processframe: failed with " + e + "\n", true);
+			wot.log("search.processframe: failed with " + e, true);
 		}
 	},
 
@@ -3752,7 +3758,7 @@ wot.search = {
 
 	onprocess: function(data, frame)
 	{
-		wot.log("search.onprocess: " + data.url + "\n");
+		wot.log("search.onprocess: " + data.url);
 
 		if (this.matchrule(data.rule, frame)) {
 			this.processframe(data.rule, frame, function(targets) {
