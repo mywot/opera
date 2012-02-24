@@ -1,6 +1,6 @@
 /*
 	ratingwindow.js
-	Copyright © 2009, 2010  WOT Services Oy <info@mywot.com>
+	Copyright © 2009 - 2012  WOT Services Oy <info@mywot.com>
 
 	This file is part of WOT.
 
@@ -73,7 +73,7 @@ $.extend(wot, { ratingwindow: {
 			wot.post("rating", "navigate", { url: url });
 			this.hide();
 		} catch (e) {
-			wot.log("ratingwindow.navigate: failed with " + e + "\n", true);
+			wot.log("ratingwindow.navigate: failed with " + e, true);
 		}
 	},
 
@@ -297,7 +297,7 @@ $.extend(wot, { ratingwindow: {
 			this.current = data || {};
 			this.updatecontents();
 		} catch (e) {
-			wot.log("ratingwindow.update: failed with " + e + "\n", true);
+			wot.log("ratingwindow.update: failed with " + e, true);
 		}
 	},
 
@@ -310,7 +310,7 @@ $.extend(wot, { ratingwindow: {
 	loadsettings: function(ondone)
 	{
 		var prefs = [
-			"accessible",
+			"accessible"
 		];
 
 		wot.components.forEach(function(item) {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<widget xmlns="http://www.w3.org/ns/widgets" id="http://www.mywot.com/wiki/Opera" defaultlocale="en" version="1.8">
+<widget xmlns="http://www.w3.org/ns/widgets" id="http://www.mywot.com/wiki/Opera" defaultlocale="en" version="1.9">
 	<name short="WOT">WOT</name>
 	<description xml:lang="cs">Web of Trust se stará o vaši bezpečnost při surfování a nakupování na Internetu.</description>
 	<description xml:lang="de">Web of Trust schützt Sie beim Browsen und Shoppen im Internet. Die farblich codierten Symbole helfen Ihnen, Online-Betrug aus dem Weg zu gehen und Betrügereien und Sicherheitsrisiken bereits im Vorfeld zu erkennen.</description>
