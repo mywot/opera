@@ -20,9 +20,18 @@
 
 body {
 	overflow: hidden;
+	padding: 0px;
+	cursor: default;
 }
+
+/* standard properties like user-select: none doesn't work for Opera */
+::selection { background: transparent;color:inherit; }
+
 #wot-ratingwindow {
 	display: block;
+	background-color: white;
+	border: 0px solid #eee;
+	border-radius: 3px 3px;
 }
 #wot-elements {
 	background: #ffffff;
@@ -142,6 +151,7 @@ body {
 	padding-left: 3px;
 	vertical-align: middle;
 	width: 312px;
+	-o-user-select: text;
 }
 #wot-ratingwindow[status="disabled"] #wot-title-text:hover {
 	color: #3073c5;

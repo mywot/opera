@@ -27,6 +27,12 @@
 	z-index: 2147483647;
 	width: 136px;
 }
+
+.wot-popup-layer ::selection {
+	background: transparent;
+	color: inherit;
+}
+
 #wot-logo {
 	background: url("../fusion/popup-logo.png") top left no-repeat;
 	display: block;

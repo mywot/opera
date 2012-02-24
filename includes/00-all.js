@@ -26,7 +26,7 @@
 */
 
 var wot = {
-	version: 20120213,
+	version: 20120227,
 	platform: "opera",
 	language: "en",		/* default */
 	debug: false,
@@ -1903,6 +1903,12 @@ wot.styles = {
 		"\ttop: 0 ! important;\n" + 
 		"\twidth: 100% ! important;\n" + 
 	"}\n" + 
+	"\n" +
+	"#wotcontainer ::selection {\n" + 
+		"\tbackground: transparent;\n" + 
+		"\tcolor: inherit;\n" + 
+	"}\n" + 
+	"\n" +
 	"#wotwarning {\n" + 
 		"\tbackground-color: #000000 ! important;\n" + 
 		"\topacity: 0.8 ! important;\n" + 
@@ -2239,6 +2245,12 @@ wot.styles = {
 		"\tz-index: 2147483647;\n" + 
 		"\twidth: 136px;\n" + 
 	"}\n" + 
+	"\n" +
+	".wot-popup-layer ::selection {\n" + 
+		"\tbackground: transparent;\n" + 
+		"\tcolor: inherit;\n" + 
+	"}\n" + 
+	"\n" +
 	"#wot-logo {\n" + 
 		"\tbackground: url(\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIgAAAAVCAYAAACdQqbPAAAAAXNSR0IArs4c6QAAAAlwSFlzAAAL%0AEwAACxMBAJqcGAAABVFJREFUaN7tml1sk1UYgJ%2Fzdd3Wrt1PGYOyblN0g4koOJbg1E1hGsUxnDFE%0AYERnYkw0GqNDuPGGCy8wEvWCRIZARCARyPzZXBYEkSG%2FASY6hovgpAzY%2F9buh63rd7zoftquHd3S%0AxQu%2F56b53vf8fu%2F7nfO%2Bp0fs3PmVBAFIRhBCIKVECAGAlGO6Ef2IPFiZQG0Fasdb5t%2FW%2BDoCIfz1%0AADJoP8GeQxlPMNl4PT7vz3suwRhr03dO48fIOH2wfiZ6l8HK%2B9uypGR91PBk3ICMACgpKUZDY%2Ffu%0ArwHMgAsYAFyK9lo0%2FJgBxAJRgE5zEA2vLQcAE2AE9IDQHETDKz6B4ZVDDyiAiAilYnPeY7i7HSix%0AZmYfPzkqb3n%2BWWZ%2B%2BjkiPQOA3g9K6a6uBkUya8cu%2Bh6cS7ujgavttXT2txEfbSEjaQlJzh76D%2BaD%0A8HitUBSvgElFSo%2FCUio1q%2F3HhLSCmJfno0pQnU6GKn8AwP3Lz7iamujfv8%2BzPDmddB%2BuRgqIX1tM%0AW0Y8Jxu%2BZPuZUqqufMFZ%2B0EqGrazteYtqloqGYyfi2Q4glZVBBJUFaRAaHYJO1u%2BvUb2xlNU17aG%0A30EMa9ahKKCqkt7vvvesFnv3IYCu8kPgdOKurAAVjNnZDL65jt8aD1B1dS9C9jM4AM2tkj6HJBIX%0Ax%2BxHOHRPFmLJh1hKpWcQQiEydSXGnC0Yc7YQk%2FOxZtUwokoVt3RPmH4HSqVD2mJEegYRtmRc9iac%0AZ05huniBnrOnUaUEKXF9s5%2BeI0eRgGHNaq51nefE9SriIgXL7t1EXuZq%2Bu442PbTZn69VkXKrAgu%0Addczb0ERywEpBKgq%2BtRcIpeWatacBjYV3c%2FGF%2B6b0EEC6UIOUhPWvgJIFARt77yNFJ5DHkURdJaX%0A01f3B0LA4NJFtDn%2F5I7byWzTQvIyVwNgjI7l1SfeQ1XhdruLSAlX2i76eO5EB1IaU6PNOUDZ0UbK%0AjjbS3jM4PTEIgL6gYCRiQO11IABDmg0hBEM3biARqIBrqJe%2BwS4iFEFqfKZPG4lxc1AUyZBbAoJ%2B%0Al2MselaU0ZhEIzxUnLdz%2FHILB87Y2Vx%2BmT01%2F9wlzZVTdxDMZsz5z6AiUd0eR7F88hk6U5ynIQH6%0AuDg67zSDkFiiZ9DYcc6nidbO20h3BDpFQXVLUhLmjSxuwwGqZtRwUpCVwsLUWG47ehE6lfk28%2FSt%0AIADGwlUIFBCSmOxHEekZxBavZzg5JbaoiM6BNoz6BJJMyThd7VT%2B%2FhHXO2q5dL2GrRWbEDo3BoNg%0ASCeYPzNrLAEXoGinMmHncN0t7F09zLFEkpOeOL0OosvNQ29LRggwFa8DIHplIepwbBK9ooCMxGyu%0AdtUTozMww5BC3a1zlNVsZOfxzTQ6aokxgilGYjUv4OHk3NEjPCE9WZJGeCm%2FYGdAHWLZA0mc%2FquV%0ADmf%2F9DkIgDn%2FafS2FHS5T3oEVisJL76EITMTkTGPOIOVpWmvUdd5mZaemwwMOel39eJ0NxNjcmGJ%0Al9gSHmLDU2W%2B%2Bx93%2FwdUY%2FLUNztwqUNcutHBub9bsZgNk6ofMdkODS%2BvJWrxI75bz%2BtvEHWzafQ5%0A05rLhsQfOdawgyZHPd2DJ7AlxpFqWUiWbRWLUlaMD5CE0LaYaWBb8RIu2rt4PD2J5ZnWiY8zAnyg%0Ak3YQrFYUq3WcTOcnM%2BhNPLfg3dBS6PdVzZLTROHiNAoXp025vvbNaoQpzdX4X6I5iMbUYpBdu%2Fb4%0A3Mf0v7sY6Ne7o7HHwOX9l7SJZN7yie6I%2Bo832BhD6T9YvdDHL7zyM7xkweY3VjZQnxONO5Sy%2FvMp%0AKVkfktP8CxrCdbsFjO0KAAAAAElFTkSuQmCC%0A\") top left no-repeat;\n" + 
 		"\tdisplay: block;\n" + 

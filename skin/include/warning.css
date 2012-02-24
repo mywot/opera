@@ -28,6 +28,12 @@
 	top: 0 ! important;
 	width: 100% ! important;
 }
+
+#wotcontainer ::selection {
+	background: transparent;
+	color: inherit;
+}
+
 #wotwarning {
 	background-color: #000000 ! important;
 	opacity: 0.8 ! important;
