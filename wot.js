@@ -77,7 +77,20 @@ var wot = {
 		scorecard:	"http://www.mywot.com/scorecard/",
 		settings:	"http://www.mywot.com/settings",
 		setcookies:	"http://www.mywot.com/setcookies.php",
-		update:		"http://www.mywot.com/update"
+		update:		"http://www.mywot.com/update",
+
+		contexts: {
+			rwlogo:     "rw-logo",
+			rwsettings: "rw-settings",
+			rwguide:    "rw-guide",
+			rwviewsc:   "rw-viewsc",
+			rwprofile:  "rw-profile",
+			rwmsg:      "rw-msg",
+			warnviewsc: "warn-viewsc",
+			warnrate:   "warn-rate",
+			popupviewsc: "popup",
+			popupdonuts: "popup-donuts"
+	    }
 	},
 
 	firstrunupdate: 1, /* increase to show a page after an update */
@@ -106,14 +119,14 @@ var wot = {
 	trigger: function(name, params, once)
 	{
 		if (this.events[name]) {
-			this.log("trigger: event " + name + ", once = " + once + "\n");
+			this.log("trigger: event " + name + ", once = " + once);
 
 			this.events[name].forEach(function(obj) {
 				try {
 					obj.func.apply(null, [].concat(params).concat(obj.params));
 				} catch (e) {
 					wot.log("trigger: event " + name + " failed with " +
-						e + "\n", true);
+						e, true);
 				}
 			});
 
@@ -129,7 +142,6 @@ var wot = {
 			this.events[name] = this.events[name] || [];
 			this.events[name].push({ func: func, params: params || [] });
 
-			//this.log("bind: event " + name + "\n");
 			this.trigger("bind:" + name);
 		}
 	},
@@ -209,7 +221,7 @@ var wot = {
 		data = data || {};
 		data.message = name + ":" + message;
 
-		this.log("post: posting " + data.message + "\n");
+		this.log("post: posting " + data.message);
 
 		if (target) {
 			target.postMessage(data);
@@ -275,7 +287,7 @@ var wot = {
 			return (RegExp(rule.url).test(url) &&
 						(!rule.urlign || !RegExp(rule.urlign).test(url)));
 		} catch (e) {
-			wot.log("matchurl: failed with " + e + "\n", force);
+			wot.log("matchurl: failed with " + e, true);
 		}
 
 		return false;
@@ -402,5 +414,17 @@ var wot = {
 		}
 
 		return path + size + "_" + size + name + ".png";
+	},
+
+	contextedurl: function(url, context)
+	{
+		var newurl = url;
+		context = "addon-" + context;
+		if(url.indexOf("?") > 0) {
+			newurl += "&src=" + context;
+		} else {
+			newurl += "?src=" + context;
+		}
+		return newurl;
 	}
 };

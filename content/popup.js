@@ -125,7 +125,7 @@ wot.popup = {
 					wot.popup.onmousemove(frame, event);
 				}, false);
 		} catch (e) {
-			wot.log("popup.add: failed with " + e + "\n", true);
+			wot.log("popup.add: failed with " + e, true);
 		}
 	},
 
@@ -229,7 +229,7 @@ wot.popup = {
 					layer.style.display = "block";
 
 					wot.log("popup.delayedshow: x = " + posx + ", y = " +
-						posy + ", version = " + version + "\n");
+						posy + ", version = " + version);
 				}
 			}, wot.search.settings.popup_show_delay || 200);
 	},
@@ -400,7 +400,9 @@ wot.popup = {
 									wot.popup.postfix);
 
 				if (target) {
-					wot.post("search", "openscorecard", { target: target });
+					wot.post("search", "openscorecard", { target: target,
+						ctx: wot.urls.contexts.popupviewsc });
+
 					wot.popup.hide(frame, wot.popup.version, true);
 				}
 			}

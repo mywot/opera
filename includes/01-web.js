@@ -84,7 +84,20 @@ var wot = {
 		scorecard:	"http://www.mywot.com/scorecard/",
 		settings:	"http://www.mywot.com/settings",
 		setcookies:	"http://www.mywot.com/setcookies.php",
-		update:		"http://www.mywot.com/update"
+		update:		"http://www.mywot.com/update",
+
+		contexts: {
+			rwlogo:     "rw-logo",
+			rwsettings: "rw-settings",
+			rwguide:    "rw-guide",
+			rwviewsc:   "rw-viewsc",
+			rwprofile:  "rw-profile",
+			rwmsg:      "rw-msg",
+			warnviewsc: "warn-viewsc",
+			warnrate:   "warn-rate",
+			popupviewsc: "popup",
+			popupdonuts: "popup-donuts"
+	    }
 	},
 
 	firstrunupdate: 1, /* increase to show a page after an update */
@@ -113,14 +126,14 @@ var wot = {
 	trigger: function(name, params, once)
 	{
 		if (this.events[name]) {
-			this.log("trigger: event " + name + ", once = " + once + "\n");
+			this.log("trigger: event " + name + ", once = " + once);
 
 			this.events[name].forEach(function(obj) {
 				try {
 					obj.func.apply(null, [].concat(params).concat(obj.params));
 				} catch (e) {
 					wot.log("trigger: event " + name + " failed with " +
-						e + "\n", true);
+						e, true);
 				}
 			});
 
@@ -136,7 +149,6 @@ var wot = {
 			this.events[name] = this.events[name] || [];
 			this.events[name].push({ func: func, params: params || [] });
 
-			//this.log("bind: event " + name + "\n");
 			this.trigger("bind:" + name);
 		}
 	},
@@ -216,7 +228,7 @@ var wot = {
 		data = data || {};
 		data.message = name + ":" + message;
 
-		this.log("post: posting " + data.message + "\n");
+		this.log("post: posting " + data.message);
 
 		if (target) {
 			target.postMessage(data);
@@ -282,7 +294,7 @@ var wot = {
 			return (RegExp(rule.url).test(url) &&
 						(!rule.urlign || !RegExp(rule.urlign).test(url)));
 		} catch (e) {
-			wot.log("matchurl: failed with " + e + "\n", force);
+			wot.log("matchurl: failed with " + e, true);
 		}
 
 		return false;
@@ -409,6 +421,18 @@ var wot = {
 		}
 
 		return path + size + "_" + size + name + ".png";
+	},
+
+	contextedurl: function(url, context)
+	{
+		var newurl = url;
+		context = "addon-" + context;
+		if(url.indexOf("?") > 0) {
+			newurl += "&src=" + context;
+		} else {
+			newurl += "?src=" + context;
+		}
+		return newurl;
 	}
 };
 
@@ -621,7 +645,7 @@ wot.my.onload();
 
 /*
 	content/settings.js
-	Copyright © 2009, 2010  WOT Services Oy <info@mywot.com>
+	Copyright © 2009 - 2012  WOT Services Oy <info@mywot.com>
 
 	This file is part of WOT.
 
@@ -641,7 +665,7 @@ wot.my.onload();
 
 wot.settings = {
 	trigger: /^http(s)?\:\/\/(www\.)?mywot\.com\/([^\/]{2}(-[^\/]+)?\/)?settings\/.+/,
-	forward: /^http(s)?\:\/\/(www\.)?mywot\.com\/([^\/]{2}(-[^\/]+)?\/)?settings(\/([^\/]+))?\/?$/,
+	forward: /^http(s)?\:\/\/(www\.)?mywot\.com\/([^\/]{2}(-[^\/]+)?\/)?settings(\/([^\/]+))?\/?(\?.+)?$/,
 	match: 6,
 
 	addscript: function(js)
@@ -658,7 +682,7 @@ wot.settings = {
 				body[0].appendChild(script);
 			}
 		} catch (e) {
-			wot.log("settings.addscript: failed with " + e + "\n");
+			wot.log("settings.addscript: failed with " + e);
 		}
 	},
 
@@ -684,7 +708,7 @@ wot.settings = {
 
 			if (m && m[1]) {
 				state[m[1]] = true;
-				wot.log("settings.savesearch: disabled: " + attrs.id + "\n");
+				wot.log("settings.savesearch: disabled: " + attrs.id);
 			}
 		}
 
@@ -709,7 +733,7 @@ wot.settings = {
 				wot.prefs.set(attrs.id, !!elem.checked);
 			} else {
 				wot.log("settings.savesetting: " + attrs.type +
-					" cannot be " + attrs.wotpref + "\n");
+					" cannot be " + attrs.wotpref);
 			}
 		} else {
 			if (attrs.value == null) {
@@ -717,7 +741,7 @@ wot.settings = {
 					attrs.value = "";
 				} else {
 					wot.log("settings.savesetting: missing value for " +
-						attrs.id + "\n");
+						attrs.id);
 					return;
 				}
 			}
@@ -734,7 +758,7 @@ wot.settings = {
 				break;
 			default:
 				wot.log("settings.savesetting: unknown type " +
-					attrs.wotpref + "\n");
+					attrs.wotpref);
 				break;
 			}
 		}
@@ -767,7 +791,7 @@ wot.settings = {
 
 			this.addscript("wotsettings_saved();");
 		} catch (e) {
-			wot.log("settings.save: failed with " + e + "\n");
+			wot.log("settings.save: failed with " + e);
 			this.addscript("wotsettings_failed();");
 		}
 	},
@@ -826,7 +850,7 @@ wot.settings = {
 					elem.appendChild(label);
 					elem.appendChild(document.createElement("br"));
 
-					wot.log("settings.loadsearch: added " + id + "\n");
+					wot.log("settings.loadsearch: added " + id);
 				});
 			});
 		});
@@ -846,9 +870,9 @@ wot.settings = {
 
 		wot.prefs.get(attrs.id, function(name, value) {
 			if (value == null) {
-				wot.log("settings.loadsetting: " + attrs.id + " missing\n");
+				wot.log("settings.loadsetting: " + attrs.id + " missing");
 			} else if (attrs.type == "checkbox" || attrs.type == "radio") {
-				wot.log("settings.loadsetting: " + attrs.id + " = " + !!value + "\n");
+				wot.log("settings.loadsetting: " + attrs.id + " = " + !!value);
 				elem.checked = !!value;
 			} else {
 				elem.setAttribute("value", value.toString());
@@ -885,10 +909,10 @@ wot.settings = {
 
 			wot.bind("prefs:ready", function() {
 				wot.settings.addscript("wotsettings_ready();");
-				wot.log("settings.load: done\n");
+				wot.log("settings.load: done");
 			});
 		} catch (e) {
-			wot.log("settings.load: failed with " + e + "\n");
+			wot.log("settings.load: failed with " + e);
 		}
 	},
 
@@ -908,8 +932,8 @@ wot.settings = {
 				/* make sure we have set up authentication cookies */
 				wot.bind("my:ready", function() {
 					window.location.href = wot.urls.settings + "/" +
-						wot.i18n("lang") + "/" + wot.platform + "/" +
-						wot.version + ((section) ? "/" + section : "");
+						wot.i18n("lang") + "/" + wot.platform + "/" + wot.version +
+					((section) ? "/" + section : "");
 				});
 			});
 		} else if (this.trigger.test(window.location.href)) {

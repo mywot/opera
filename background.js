@@ -1,6 +1,6 @@
 /*
 	background.js
-	Copyright © 2009-2011  WOT Services Oy <info@mywot.com>
+	Copyright © 2009 - 2012  WOT Services Oy <info@mywot.com>
 
 	This file is part of WOT.
 
@@ -189,7 +189,7 @@ $.extend(wot, { core: {
 					}, tab);
 			}
 		} catch (e) {
-			wot.log("core.updatetabwarning: failed with " + e + "\n");
+			wot.log("core.updatetabwarning: failed with " + e);
 		}
 	},
 
@@ -336,8 +336,11 @@ $.extend(wot, { core: {
 			});
 
 			wot.bind("message:search:openscorecard", function(port, data) {
+				var url = wot.contextedurl(wot.urls.scorecard +
+					encodeURIComponent(data.target), data.ctx);
+
 				opera.extension.tabs.create({
-					url: wot.urls.scorecard + encodeURIComponent(data.target),
+					url: url,
 					focused: true
 				});
 			});
@@ -439,12 +442,12 @@ $.extend(wot, { core: {
 
 				wot.bind("cache:set", function(name, value) {
 					wot.log("cache.set: " + name + " = " +
-						JSON.stringify(value) + "\n");
+						JSON.stringify(value));
 				});
 
 				wot.bind("prefs:set", function(name, value) {
 					wot.log("prefs.set: " + name + " = " +
-						JSON.stringify(value) + "\n");
+						JSON.stringify(value));
 				});
 			}
 
@@ -477,7 +480,7 @@ $.extend(wot, { core: {
 
 			wot.cache.purge();
 		} catch (e) {
-			wot.log("core.onload: failed with " + e + "\n", true);
+			wot.log("core.onload: failed with " + e, true);
 		}
 	}
 }});

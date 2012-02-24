@@ -84,7 +84,20 @@ var wot = {
 		scorecard:	"http://www.mywot.com/scorecard/",
 		settings:	"http://www.mywot.com/settings",
 		setcookies:	"http://www.mywot.com/setcookies.php",
-		update:		"http://www.mywot.com/update"
+		update:		"http://www.mywot.com/update",
+
+		contexts: {
+			rwlogo:     "rw-logo",
+			rwsettings: "rw-settings",
+			rwguide:    "rw-guide",
+			rwviewsc:   "rw-viewsc",
+			rwprofile:  "rw-profile",
+			rwmsg:      "rw-msg",
+			warnviewsc: "warn-viewsc",
+			warnrate:   "warn-rate",
+			popupviewsc: "popup",
+			popupdonuts: "popup-donuts"
+	    }
 	},
 
 	firstrunupdate: 1, /* increase to show a page after an update */
@@ -113,14 +126,14 @@ var wot = {
 	trigger: function(name, params, once)
 	{
 		if (this.events[name]) {
-			this.log("trigger: event " + name + ", once = " + once + "\n");
+			this.log("trigger: event " + name + ", once = " + once);
 
 			this.events[name].forEach(function(obj) {
 				try {
 					obj.func.apply(null, [].concat(params).concat(obj.params));
 				} catch (e) {
 					wot.log("trigger: event " + name + " failed with " +
-						e + "\n", true);
+						e, true);
 				}
 			});
 
@@ -136,7 +149,6 @@ var wot = {
 			this.events[name] = this.events[name] || [];
 			this.events[name].push({ func: func, params: params || [] });
 
-			//this.log("bind: event " + name + "\n");
 			this.trigger("bind:" + name);
 		}
 	},
@@ -216,7 +228,7 @@ var wot = {
 		data = data || {};
 		data.message = name + ":" + message;
 
-		this.log("post: posting " + data.message + "\n");
+		this.log("post: posting " + data.message);
 
 		if (target) {
 			target.postMessage(data);
@@ -282,7 +294,7 @@ var wot = {
 			return (RegExp(rule.url).test(url) &&
 						(!rule.urlign || !RegExp(rule.urlign).test(url)));
 		} catch (e) {
-			wot.log("matchurl: failed with " + e + "\n", force);
+			wot.log("matchurl: failed with " + e, true);
 		}
 
 		return false;
@@ -409,6 +421,18 @@ var wot = {
 		}
 
 		return path + size + "_" + size + name + ".png";
+	},
+
+	contextedurl: function(url, context)
+	{
+		var newurl = url;
+		context = "addon-" + context;
+		if(url.indexOf("?") > 0) {
+			newurl += "&src=" + context;
+		} else {
+			newurl += "?src=" + context;
+		}
+		return newurl;
 	}
 };
 
@@ -2502,7 +2526,7 @@ wot.prefs.onload();
 
 /*
 	content/warning.js
-	Copyright © 2009-2011  WOT Services Oy <info@mywot.com>
+	Copyright © 2009 - 2012  WOT Services Oy <info@mywot.com>
 
 	This file is part of WOT.
 
@@ -2626,7 +2650,7 @@ wot.warning = {
 				return document.body.clientHeight;
 			}
 		} catch (e) {
-			wot.log("warning.getheight: failed with " + e + "\n", true);
+			wot.log("warning.getheight: failed with " + e, true);
 		}
 
 		return -1;
@@ -2655,7 +2679,7 @@ wot.warning = {
 				}
 			}
 		} catch (e) {
-			wot.log("warning.hideobjects: failed with " + e + "\n", true);
+			wot.log("warning.hideobjects: failed with " + e, true);
 		}
 	},
 
@@ -2669,7 +2693,7 @@ wot.warning = {
 
 			return html;
 		} catch (e) {
-			wot.log("warning.processhtml: failed with " + e + "\n", true);
+			wot.log("warning.processhtml: failed with " + e, true);
 		}
 
 		return "";
@@ -2687,8 +2711,13 @@ wot.warning = {
 				}
 			}
 		} catch (e) {
-			wot.log("warning.hide: failed with " + e + "\n", true);
+			wot.log("warning.hide: failed with " + e, true);
 		}
+	},
+
+	navigate: function(url, context)
+	{
+		window.location.href = wot.contextedurl(url, context);
 	},
 
 	add: function(data, reason)
@@ -2827,14 +2856,15 @@ wot.warning = {
 
 			document.getElementById("wotinfobutton").addEventListener("click",
 				function() {
-					window.location.href = wot.urls.scorecard +
-						encodeURIComponent(data.target);
+					var url = wot.urls.scorecard + encodeURIComponent(data.target);
+					wot.warning.navigate(url, wot.urls.contexts.warnviewsc);
 				}, false);
 
 			document.getElementById("wotratebutton").addEventListener("click",
 				function() {
-					window.location.href = wot.urls.scorecard +
+					var url = wot.urls.scorecard +
 						encodeURIComponent(data.target) + "/rate";
+					wot.warning.navigate(url, wot.urls.contexts.warnrate);
 				}, false);
 
 			document.getElementById("wotgotobutton").addEventListener("click",
@@ -2847,7 +2877,7 @@ wot.warning = {
 					});
 				}, false);
 		} catch (e) {
-			wot.log("warning.add: failed with " + e + "\n", true);
+			wot.log("warning.add: failed with " + e, true);
 		}
 	},
 
@@ -3050,7 +3080,7 @@ wot.popup = {
 					wot.popup.onmousemove(frame, event);
 				}, false);
 		} catch (e) {
-			wot.log("popup.add: failed with " + e + "\n", true);
+			wot.log("popup.add: failed with " + e, true);
 		}
 	},
 
@@ -3154,7 +3184,7 @@ wot.popup = {
 					layer.style.display = "block";
 
 					wot.log("popup.delayedshow: x = " + posx + ", y = " +
-						posy + ", version = " + version + "\n");
+						posy + ", version = " + version);
 				}
 			}, wot.search.settings.popup_show_delay || 200);
 	},
@@ -3325,7 +3355,9 @@ wot.popup = {
 									wot.popup.postfix);
 
 				if (target) {
-					wot.post("search", "openscorecard", { target: target });
+					wot.post("search", "openscorecard", { target: target,
+						ctx: wot.urls.contexts.popupviewsc });
+
 					wot.popup.hide(frame, wot.popup.version, true);
 				}
 			}
@@ -3381,7 +3413,7 @@ wot.search = {
 
 			return (flags.indexOf("n") < 0) ? rv : !rv;
 		} catch (e) {
-			wot.log("search.matchregexp: failed with " + e + "\n", true);
+			wot.log("search.matchregexp: failed with " + e, true);
 		}
 
 		return false;
@@ -3465,7 +3497,7 @@ wot.search = {
 				}
 			}
 		} catch (e) {
-			wot.log("search.findmatchingelement: failed with " + e + "\n", true);
+			wot.log("search.findmatchingelement: failed with " + e, true);
 		}
 
 		return null;
@@ -3495,7 +3527,7 @@ wot.search = {
 				return true;
 			}
 		} catch (e) {
-			wot.log("search.matchcontent: failed with " + e + "\n", true);
+			wot.log("search.matchcontent: failed with " + e, true);
 		}
 
 		return false;
@@ -3525,7 +3557,7 @@ wot.search = {
 
 			return true;
 		} catch (e) {
-			wot.log("search.matchrule: failed with " + e + "\n", true);
+			wot.log("search.matchrule: failed with " + e, true);
 		}
 
 		return false;
@@ -3568,7 +3600,7 @@ wot.search = {
 			});
 
 		} catch (e) {
-			wot.log("search.processrule: failed with " + e + "\n", true);
+			wot.log("search.processrule: failed with " + e, true);
 		}
 	},
 
@@ -3597,7 +3629,7 @@ wot.search = {
 				elem.innerHTML = "&nbsp;";
 			}
 		} catch (e) {
-			wot.log("search.addrating: failed with " + e + "\n", true);
+			wot.log("search.addrating: failed with " + e, true);
 		}
 	},
 
@@ -3867,11 +3899,16 @@ wot.search = {
 				event.target.getAttribute(wot.search.getattrname("target"));
 
 			if (target) {
-				wot.post("search", "openscorecard", { target: target });
+
+				wot.post("search", "openscorecard", {
+					target: target,
+					ctx: wot.urls.contexts.popupdonuts
+				});
+
 				event.stopPropagation();
 			}
 		} catch (e) {
-			wot.log("search.onclickrating: failed with " + e + "\n", true);
+			wot.log("search.onclickrating: failed with " + e, true);
 		}
 	},
 
@@ -3907,7 +3944,7 @@ wot.search = {
 				}
 			}
 		} catch (e) {
-			console.log("search.onload: failed with " + e + "\n");
+			console.log("search.onload: failed with " + e);
 		}
 	}
 };

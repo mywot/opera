@@ -44,7 +44,7 @@ wot.search = {
 
 			return (flags.indexOf("n") < 0) ? rv : !rv;
 		} catch (e) {
-			wot.log("search.matchregexp: failed with " + e + "\n", true);
+			wot.log("search.matchregexp: failed with " + e, true);
 		}
 
 		return false;
@@ -128,7 +128,7 @@ wot.search = {
 				}
 			}
 		} catch (e) {
-			wot.log("search.findmatchingelement: failed with " + e + "\n", true);
+			wot.log("search.findmatchingelement: failed with " + e, true);
 		}
 
 		return null;
@@ -158,7 +158,7 @@ wot.search = {
 				return true;
 			}
 		} catch (e) {
-			wot.log("search.matchcontent: failed with " + e + "\n", true);
+			wot.log("search.matchcontent: failed with " + e, true);
 		}
 
 		return false;
@@ -188,7 +188,7 @@ wot.search = {
 
 			return true;
 		} catch (e) {
-			wot.log("search.matchrule: failed with " + e + "\n", true);
+			wot.log("search.matchrule: failed with " + e, true);
 		}
 
 		return false;
@@ -231,7 +231,7 @@ wot.search = {
 			});
 
 		} catch (e) {
-			wot.log("search.processrule: failed with " + e + "\n", true);
+			wot.log("search.processrule: failed with " + e, true);
 		}
 	},
 
@@ -260,7 +260,7 @@ wot.search = {
 				elem.innerHTML = "&nbsp;";
 			}
 		} catch (e) {
-			wot.log("search.addrating: failed with " + e + "\n", true);
+			wot.log("search.addrating: failed with " + e, true);
 		}
 	},
 
@@ -530,11 +530,16 @@ wot.search = {
 				event.target.getAttribute(wot.search.getattrname("target"));
 
 			if (target) {
-				wot.post("search", "openscorecard", { target: target });
+
+				wot.post("search", "openscorecard", {
+					target: target,
+					ctx: wot.urls.contexts.popupdonuts
+				});
+
 				event.stopPropagation();
 			}
 		} catch (e) {
-			wot.log("search.onclickrating: failed with " + e + "\n", true);
+			wot.log("search.onclickrating: failed with " + e, true);
 		}
 	},
 
@@ -570,7 +575,7 @@ wot.search = {
 				}
 			}
 		} catch (e) {
-			console.log("search.onload: failed with " + e + "\n");
+			console.log("search.onload: failed with " + e);
 		}
 	}
 };
