@@ -17,7 +17,14 @@
 	<description xml:lang="sv">Med Web of Trust kan du vara säker när du surfar och handlar på Internet. WOT hjälper dig att undvika onlinebedrägerier, identitetsstöld, opålitliga onlinebutiker och säkerhetsrisker redan innan du klickar.</description>
 	<author href="http://www.mywot.com/" email="info@mywot.com">WOT Services Oy</author>
 	<icon src="skin/fusion/icons/128.png"/>
-	<access origin="http://www.mywot.com/"/>
-	<access origin="http://api.mywot.com/"/>
-	<access origin="https://api.mywot.com/"/>
+    <feature name="opera:share-cookies" required="true"/>
+	<access origin="http://mywot.com/" subdomains="true"/>
+    <access origin="https://mywot.com/" subdomains="true"/>
+
+    <!-- for compatibilty with older Operas -->
+    <access origin="http://www.mywot.com/"/>
+    <access origin="https://www.mywot.com/"/>
+    <access origin="http://api.mywot.com/"/>
+    <access origin="https://api.mywot.com/"/>
+
 </widget>
