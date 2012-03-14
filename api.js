@@ -98,12 +98,15 @@ $.extend(wot, { api: {
 				dataType: "xml",
 				timeout: wot.api.info.timeout,
 				url: url,
+				isLocal: false,
 
 				error: function(request, status, error)
 				{
 					wot.log("api.call.error: url = " + url + ", status = " +
-						status + "\n", true);
-	
+						status, true);
+					wot.log(request.status, true);
+					wot.log(request, true);
+
 					if (typeof(onerror) == "function") {
 						onerror(request, status, error);
 					}
