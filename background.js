@@ -389,6 +389,9 @@ $.extend(wot, { core: {
 						}
 					});
 
+					// Don't show warning screen immediately after rating site
+					wot.cache.setflags(data.state.target, {warned: true });
+
 					wot.api.submit(data.state.target, params);
 				}
 
