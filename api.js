@@ -47,6 +47,13 @@ $.extend(wot, { api: {
 	call: function(apiname, options, params, onerror, onsuccess)
 	{
 		try {
+
+			// hack for Opera 11.x (it doesn't support CORS, required by jQuery 1.7.*)
+			if (!$.support.cors)
+			{
+				$.support.cors = true;  // forcing to set it and take a deep breathe
+			}
+
 			var nonce = wot.crypto.getnonce(apiname);
 
 			params = params || {};
@@ -104,8 +111,6 @@ $.extend(wot, { api: {
 				{
 					wot.log("api.call.error: url = " + url + ", status = " +
 						status, true);
-					wot.log(request.status, true);
-					wot.log(request, true);
 
 					if (typeof(onerror) == "function") {
 						onerror(request, status, error);
