@@ -472,8 +472,12 @@ wot.search = {
 			var handler = {
 				handleEvent: function() {
 					/* remove event handler while processing */
-					frame.document.removeEventListener("DOMNodeInserted", this,
-						false);
+					try {
+						frame.document.removeEventListener("DOMNodeInserted", this,
+							false);
+					} catch (e) {
+						// come on Opera...
+					}
 
 					/* let the document settle before reprocessing */
 					window.setTimeout(function() {
@@ -485,7 +489,12 @@ wot.search = {
 			/* watch for changes */
 			// This timeout is a Workaround for VKontakte's bug / issue 554
 			window.setTimeout(function(){
-				frame.document.addEventListener("DOMNodeInserted", handler, false);
+				try {
+					frame.document.addEventListener("DOMNodeInserted", handler, false);
+				} catch(e) {
+					// hard life with Opera and cross-domains frames here...
+				}
+
 			}, 500);
 			// seems like my computer very fast so we need delay about 500ms
 		}
