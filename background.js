@@ -125,7 +125,9 @@ $.extend(wot, { core: {
 	updatetabstate: function(tab, data, popup)
 	{
 		try {
-			if (!tab || tab.focused) {
+			// Opera 11.x uses tab.focused
+			// Opera 12.0 uses tab.selected
+			if (!tab || tab.focused || tab.selected) {
 				/* update the toolbar button */
 				this.seticon(data);
 			}
