@@ -108,7 +108,7 @@ var wot = {
 	log: function(s, force)
 	{
 		if (wot.debug || force) {
-			opera.postError("extension: " + s);
+			opera.postError("WOT extension: " + s);
 		}
 	},
 
