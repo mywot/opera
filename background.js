@@ -136,17 +136,19 @@ $.extend(wot, { core: {
 				popup = null;
 			}
 
+			var usercontent = {
+				message: wot.core.usermessage,
+				content: wot.core.usercontent
+			};
+
 			if(tab && tab.readystate != undefined && !tab.closed) {
-				wot.post("status", "update", { data: data }, tab);
+				wot.post("status", "update", { data: data, usercontent: usercontent }, tab);
 			}
 
 			if (popup) {
 				wot.post("status", "update", {
 					data: data,
-					usercontent: {
-						message: wot.core.usermessage,
-						content: wot.core.usercontent
-					}
+					usercontent: usercontent
 				}, popup);
 			}
 
