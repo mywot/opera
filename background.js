@@ -52,8 +52,6 @@ $.extend(wot, { core: {
 	{
 		var url = (tab && tab.url) ? tab.url : "";
 
-		wot.log("core.updatetab: " + url);
-
 		if (wot.api.isregistered()) {
 			wot.core.loadratings(url, function(hosts) {
 				wot.core.updatetabstate(tab, {
@@ -125,9 +123,15 @@ $.extend(wot, { core: {
 	updatetabstate: function(tab, data, popup)
 	{
 		try {
+
+			// workaround for Opera's bug (tab.selected is undefined)
+			// see https://github.com/mywot/opera/issues/30 and remove when Opera 12 will be stable
+			var tab_selected;
+			tab_selected = (opera.extension.tabs.getFocused() == tab);
+
 			// Opera 11.x uses tab.focused
 			// Opera 12.0 uses tab.selected
-			if (!tab || tab.focused || tab.selected) {
+			if (!tab || tab.focused || tab.selected || tab_selected) {
 				/* update the toolbar button */
 				this.seticon(data);
 			}
