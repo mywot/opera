@@ -296,7 +296,9 @@ $.extend(wot, { api: {
 			opera.extension.tabs.create({
 					url: wot.urls.settings + "/welcome",
 					focused: true
-				}, onready);
+				});
+
+			onready();
 		}
 	},
 

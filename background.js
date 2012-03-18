@@ -134,18 +134,20 @@ $.extend(wot, { core: {
 				popup = null;
 			}
 
-			[ tab, popup ].forEach(function(target) {
-				if (target) {
-					wot.post("status", "update", {
-							data: data,
-							usercontent: {
-								message: wot.core.usermessage,
-								content: wot.core.usercontent
-							}
-						}, target);
-				}
-			});
-			
+			if(tab && tab.readystate != undefined && !tab.closed) {
+				wot.post("status", "update", { data: data }, tab);
+			}
+
+			if (popup) {
+				wot.post("status", "update", {
+					data: data,
+					usercontent: {
+						message: wot.core.usermessage,
+						content: wot.core.usercontent
+					}
+				}, popup);
+			}
+
 			this.updatetabwarning(tab, data);
 		} catch (e) {
 			wot.log("core.updatetabstate: failed with " + e, true);
