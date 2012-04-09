@@ -26,7 +26,7 @@
 */
 
 var wot = {
-	version: 20120227,
+	version: 20120409,
 	platform: "opera",
 	language: "en",		/* default */
 	debug: false,
@@ -115,7 +115,7 @@ var wot = {
 	log: function(s, force)
 	{
 		if (wot.debug || force) {
-			opera.postError("extension: " + s);
+			opera.postError("WOT extension: " + s);
 		}
 	},
 
