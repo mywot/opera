@@ -182,11 +182,11 @@ $.extend(wot, { api: {
 			wot.prefs.set("witness_id", id);
 			wot.prefs.set("witness_key", key);
 
-			wot.log("api.setids: id = " + id + "\n");
+			wot.log("api.setids: id = " + id);
 
 			return true;
 		} catch (e) {
-			wot.log("api.setids: failed with " + e + "\n", true);
+			wot.log("api.setids: failed with " + e, true);
 		}
 
 		return false;
@@ -293,10 +293,12 @@ $.extend(wot, { api: {
 			wot.prefs.set("firstrun:welcome", true);
 			wot.prefs.set("firstrun:update", wot.firstrunupdate);
 
-			opera.extension.tabs.create({
+			if(!wot.is_mobile) {
+				opera.extension.tabs.create({
 					url: wot.urls.settings + "/welcome",
 					focused: true
 				});
+			}
 
 			onready();
 		}
