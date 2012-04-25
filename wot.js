@@ -24,6 +24,8 @@ var wot = {
 	language: "en",		/* default */
 	debug: false,
 	default_component: 0,
+	is_mobile: false,   // mobile or desktop
+	is_tablet: false,   // tablet or desktop
 
 	components: [
 		{ name: 0 },
