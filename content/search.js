@@ -540,11 +540,14 @@ wot.search = {
 
 			if (target) {
 
-				wot.post("search", "openscorecard", {
-					target: target,
-					ctx: wot.urls.contexts.popupdonuts
-				});
-
+				/* Show popups on SERPs when donut is clicked (Mobile only)
+				 * https://github.com/mywot/opera/issues/40 */
+				if(!wot.is_mobile && !wot.is_tablet) {
+					wot.post("search", "openscorecard", {
+						target: target,
+						ctx: wot.urls.contexts.popupdonuts
+					});
+				}
 				event.stopPropagation();
 			}
 		} catch (e) {
@@ -555,6 +558,8 @@ wot.search = {
 	onload: function()
 	{
 		try {
+			wot.detect_formfactor();
+
 			wot.bind("message:search:process", function(port, data) {
 				/* load the necessary settings before starting */
 				wot.search.loadsettings(function() {

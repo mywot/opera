@@ -26,11 +26,13 @@
 */
 
 var wot = {
-	version: 20120227,
+	version: 20120319,
 	platform: "opera",
 	language: "en",		/* default */
 	debug: false,
 	default_component: 0,
+	is_mobile: false,   // mobile or desktop
+	is_tablet: false,   // tablet or desktop
 
 	components: [
 		{ name: 0 },
@@ -115,7 +117,20 @@ var wot = {
 	log: function(s, force)
 	{
 		if (wot.debug || force) {
-			opera.postError("extension: " + s);
+			opera.postError("WOT extension: " + s);
+		}
+	},
+
+	detect_formfactor: function()
+	{
+		var app = window.navigator.appVersion;
+
+		if(app && app.indexOf("Opera Mobi") > 0) {
+			wot.is_mobile = true;
+			wot.is_tablet = false;
+		} else if(app && app.indexOf("Opera Tablet") > 0) {
+			wot.is_mobile = false;
+			wot.is_tablet = true;
 		}
 	},
 

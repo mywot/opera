@@ -315,25 +315,12 @@ $.extend(wot, { core: {
 		return false;
 	},
 
-	detect_formfactor: function()
-	{
-		var app = window.navigator.appVersion;
-
-		if(app && app.indexOf("Opera Mobi") > 0) {
-			wot.is_mobile = true;
-			wot.is_tablet = false;
-		} else if(app && app.indexOf("Opera Tablet") > 0) {
-			wot.is_mobile = false;
-			wot.is_tablet = true;
-		}
-	},
-
 	onload: function()
 	{
 		try {
 
 			/* init */
-			wot.core.detect_formfactor();
+			wot.detect_formfactor();
 
 			/* messages */
 
