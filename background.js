@@ -112,11 +112,13 @@ $.extend(wot, { core: {
 
 	seticon: function(data)
 	{
-		try {
-			this.button.icon = wot.geticon(this.geticon(data), 19,
-									wot.prefs.get("accessible"));
-		} catch (e) {
-			wot.log("core.seticon: failed with " + e, true);
+		if(this.button) {
+			try {
+				this.button.icon = wot.geticon(this.geticon(data), 19,
+										wot.prefs.get("accessible"));
+			} catch (e) {
+				wot.log("core.seticon: failed with " + e, true);
+			}
 		}
 	},
 
@@ -383,16 +385,20 @@ $.extend(wot, { core: {
 			});
 
 			wot.bind("message:rating:resizepopup", function(port, data) {
-				if (data.width) {
-					var width = data.width + "px";
-					if (wot.core.button.popup.width != width) {
-						wot.core.button.popup.width = width;
+
+				/* this can be applied only when button exists (Desktop & Tablet) */
+				if(wot.core.button) {
+					if (data.width) {
+						var width = data.width + "px";
+						if (wot.core.button.popup.width != width) {
+							wot.core.button.popup.width = width;
+						}
 					}
-				}
-				if (data.height) {
-					var height = data.height + "px";
-					if (wot.core.button.popup.height != height) {
-						wot.core.button.popup.height = height;
+					if (data.height) {
+						var height = data.height + "px";
+						if (wot.core.button.popup.height != height) {
+							wot.core.button.popup.height = height;
+						}
 					}
 				}
 			});
@@ -483,18 +489,25 @@ $.extend(wot, { core: {
 
 			/* toolbar button */
 
-			this.button = opera.contexts.toolbar.createItem({
-								disabled: false,
-								title: "WOT",
-								icon: "skin/fusion/19_19/default.png",
-								popup: {
-									href: "ratingwindow.html",
-									width: "332px",
-									height: "492px"
-								}
-							});
+			if(wot.is_mobile) {
+				this.button = null;
+			} else {
 
-			opera.contexts.toolbar.addItem(this.button);
+				/* Show button in Desktop and Tablet mode */
+				this.button = opera.contexts.toolbar.createItem({
+					disabled: false,
+					title: "WOT",
+					icon: "skin/fusion/19_19/default.png",
+					popup: {
+						href: "ratingwindow.html",
+						width: "332px",
+						height: "492px"
+					}
+				});
+
+				opera.contexts.toolbar.addItem(this.button);
+			}
+
 
 			/* initialize */
 
