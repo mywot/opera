@@ -492,22 +492,26 @@ $.extend(wot, { core: {
 			if(wot.is_mobile) {
 				this.button = null;
 			} else {
-
-				/* Show button in Desktop and Tablet mode */
-				this.button = opera.contexts.toolbar.createItem({
+				var options = {
 					disabled: false,
 					title: "WOT",
-					icon: "skin/fusion/19_19/default.png",
-					popup: {
+					icon: "skin/fusion/19_19/default.png"
+				};
+
+				/* Don't open rating window in Opera Mobile (temporary) */
+				// https://github.com/mywot/opera/issues/37
+				if(!wot.is_tablet && !wot.is_mobile) {
+					options.popup =  {
 						href: "ratingwindow.html",
 						width: "332px",
 						height: "492px"
 					}
-				});
+				}
 
+				/* Show button in Desktop and Tablet mode */
+				this.button = opera.contexts.toolbar.createItem(options);
 				opera.contexts.toolbar.addItem(this.button);
 			}
-
 
 			/* initialize */
 
