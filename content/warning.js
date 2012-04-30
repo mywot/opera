@@ -18,96 +18,109 @@
 	along with WOT. If not, see <http://www.gnu.org/licenses/>.
 */
 
-const WOT_WARNING_HTML =
-	"<table id=\"wotcontainer\" cellspacing=\"0\" lang=\"{LANG}\" class=\"{CLASS} {ACCESSIBLE}\">" +
-	"<tr id=\"wotheadline\" style=\"background: url({HEADLINE}) top center no-repeat ! important;\">" +
-		"<td colspan=\"2\"></td>" +
-	"</tr>" +
-	"<tr id=\"wotcontainertop\">" +
-		"<td colspan=\"2\"></td>" +
-	"</tr>" +
-	"<tr id=\"wotdescription\" class=\"wotcontainermiddle\">" +
-		"<td colspan=\"2\">" +
-			"<div id=\"wotdescriptiontext\" class=\"wotlimitwidth {DESCCLASS}\">{DESC}</div>" +
-		"</td>" +
-	"</tr>" +
-	"<tr id=\"wottarget\" class=\"wotcontainermiddle\">" +
-		"<td colspan=\"2\">" +
-			"<div id=\"wotwebsite\" class=\"wotlimitwidth\" title=\"{TITLE}\">{TITLE}</div>" +
-		"</td>	" +
-	"</tr>" +
-	"<tr id=\"wotinfo\" class=\"wotcontainermiddle\">" +
-		"<td colspan=\"2\">" +
-			"<div id=\"wotinfobutton\">" +
-				"<span id=\"wotinfotext\">{INFO}</span>" +
-			"</div>" +
-		"</td>" +
-	"</tr>" +
-	"<tr id=\"wotratingtop\" class=\"wotcontainermiddle\">" +
-		"<td colspan=\"2\"></td>" +
-	"</tr>" +
-	"<tr id=\"wotratingareatop\" class=\"wotratingarea\">" +
-		"<td colspan=\"2\"></td>" +
-	"</tr>" +
-	"<tr id=\"wotrating0\" class=\"wotratingarea wotratingrow wotreputation{RATING0}\">" +
-		"<td class=\"wotratingcol wotratingcolleft\">" +
-			"<span class=\"wotratingname\">{RATINGDESC0}</span>" +
-		"</td>" +
-		"<td class=\"wotratingcol wotratingcolright\">" +
-			"<span id=\"wotratingexpl0\" class=\"wotratingexpl\">{RATINGEXPL0}</span>" +
-		"</td>" +
-	"</tr>" +
-	"<tr id=\"wotrating1\" class=\"wotratingarea wotratingrow wotreputation{RATING1}\">" +
-		"<td class=\"wotratingcol wotratingcolleft\">" +
-			"<span class=\"wotratingname\">{RATINGDESC1}</span>" +
-		"</td>" +
-		"<td class=\"wotratingcol wotratingcolright\">" +
-			"<span id=\"wotratingexpl1\" class=\"wotratingexpl\">{RATINGEXPL1}</span>" +
-		"</td>" +
-	"</tr>" +
-	"<tr id=\"wotrating2\" class=\"wotratingarea wotratingrow wotreputation{RATING2}\">" +
-		"<td class=\"wotratingcol wotratingcolleft\">" +
-			"<span class=\"wotratingname\">{RATINGDESC2}</span>" +
-		"</td>" +
-		"<td class=\"wotratingcol wotratingcolright\">" +
-			"<span id=\"wotratingexpl2\" class=\"wotratingexpl\">{RATINGEXPL2}</span>" +
-		"</td>" +
-	"</tr>" +
-	"<tr id=\"wotrating4\" class=\"wotratingarea wotratingrow wotreputation{RATING4}\">" +
-		"<td class=\"wotratingcol wotratingcolleft\">" +
-			"<span class=\"wotratingname\">{RATINGDESC4}</span>" +
-		"</td>" +
-		"<td class=\"wotratingcol wotratingcolright\">" +
-			"<span id=\"wotratingexpl4\" class=\"wotratingexpl\">{RATINGEXPL4}</span>" +
-		"</td>" +
-	"</tr>" +
-	"<tr id=\"wotratingareabottom\" class=\"wotratingarea\">" +
-		"<td colspan=\"2\"></td>" +
-	"</tr>" +
-	"<tr id=\"wotratingbottom\" class=\"wotcontainermiddle\">" +
-		"<td colspan=\"2\"></td>" +
-	"</tr>" +
-	"<tr id=\"wotbuttonstop\" class=\"wotcontainermiddle\">" +
-		"<td colspan=\"2\"></td>" +
-	"</tr>" +
-	"<tr id=\"wotbuttons\" class=\"wotcontainermiddle\">" +
-		"<td id=\"wotbuttonrate\">" +
-			"<span id=\"wotratebutton\" class=\"wotbutton\">{RATETEXT}</span>" +
-		"</td>" +
-		"<td id=\"wotbuttongoto\">" +
-			"<span id=\"wotgotobutton\" class=\"wotbutton\">{GOTOTEXT}</span>" +
-		"</td>" +
-	"</tr>" +
-	"<tr id=\"wotcontainerbottom\">" +
-		"<td colspan=\"2\"></td>" +
-	"</tr>" +
-	"<tr id=\"wotlogo\">" +
-		"<td colspan=\"2\"></td>" +
-	"</tr>" +
-	"</table>";
+var WOT_WARNING_HTML = "";
+
 
 wot.warning = {
+	prepare_warnscreen: function() {
+
+		WOT_WARNING_HTML =
+		"<table id=\"wotcontainer\" cellspacing=\"0\" lang=\"{LANG}\" class=\"{CLASS} {ACCESSIBLE}\">" +
+		"<tr id=\"wotheadline\" style=\"background: url({HEADLINE}) top center no-repeat ! important;\">" +
+			"<td colspan=\"2\"></td>" +
+		"</tr>" +
+		"<tr id=\"wotcontainertop\">" +
+			"<td colspan=\"2\"></td>" +
+		"</tr>" +
+		"<tr id=\"wotdescription\" class=\"wotcontainermiddle\">" +
+			"<td colspan=\"2\">" +
+				"<div id=\"wotdescriptiontext\" class=\"wotlimitwidth {DESCCLASS}\">{DESC}</div>" +
+			"</td>" +
+		"</tr>" +
+		"<tr id=\"wottarget\" class=\"wotcontainermiddle\">" +
+			"<td colspan=\"2\">" +
+				"<div id=\"wotwebsite\" class=\"wotlimitwidth\" title=\"{TITLE}\">{TITLE}</div>" +
+			"</td>	" +
+		"</tr>" +
+		"<tr id=\"wotinfo\" class=\"wotcontainermiddle\">" +
+			"<td colspan=\"2\">" +
+				"<div id=\"wotinfobutton\">" +
+					"<span id=\"wotinfotext\">{INFO}</span>" +
+				"</div>" +
+			"</td>" +
+		"</tr>" +
+		"<tr id=\"wotratingtop\" class=\"wotcontainermiddle\">" +
+			"<td colspan=\"2\"></td>" +
+		"</tr>" +
+		"<tr id=\"wotratingareatop\" class=\"wotratingarea\">" +
+			"<td colspan=\"2\"></td>" +
+		"</tr>" +
+		"<tr id=\"wotrating0\" class=\"wotratingarea wotratingrow wotreputation{RATING0}\">" +
+			"<td class=\"wotratingcol wotratingcolleft\">" +
+				"<span class=\"wotratingname\">{RATINGDESC0}</span>" +
+			"</td>" +
+			"<td class=\"wotratingcol wotratingcolright\">" +
+				"<span id=\"wotratingexpl0\" class=\"wotratingexpl\">{RATINGEXPL0}</span>" +
+			"</td>" +
+		"</tr>" +
+		"<tr id=\"wotrating1\" class=\"wotratingarea wotratingrow wotreputation{RATING1}\">" +
+			"<td class=\"wotratingcol wotratingcolleft\">" +
+				"<span class=\"wotratingname\">{RATINGDESC1}</span>" +
+			"</td>" +
+			"<td class=\"wotratingcol wotratingcolright\">" +
+				"<span id=\"wotratingexpl1\" class=\"wotratingexpl\">{RATINGEXPL1}</span>" +
+			"</td>" +
+		"</tr>" +
+		"<tr id=\"wotrating2\" class=\"wotratingarea wotratingrow wotreputation{RATING2}\">" +
+			"<td class=\"wotratingcol wotratingcolleft\">" +
+				"<span class=\"wotratingname\">{RATINGDESC2}</span>" +
+			"</td>" +
+			"<td class=\"wotratingcol wotratingcolright\">" +
+				"<span id=\"wotratingexpl2\" class=\"wotratingexpl\">{RATINGEXPL2}</span>" +
+			"</td>" +
+		"</tr>" +
+		"<tr id=\"wotrating4\" class=\"wotratingarea wotratingrow wotreputation{RATING4}\">" +
+			"<td class=\"wotratingcol wotratingcolleft\">" +
+				"<span class=\"wotratingname\">{RATINGDESC4}</span>" +
+			"</td>" +
+			"<td class=\"wotratingcol wotratingcolright\">" +
+				"<span id=\"wotratingexpl4\" class=\"wotratingexpl\">{RATINGEXPL4}</span>" +
+			"</td>" +
+		"</tr>" +
+		"<tr id=\"wotratingareabottom\" class=\"wotratingarea\">" +
+			"<td colspan=\"2\"></td>" +
+		"</tr>" +
+		"<tr id=\"wotratingbottom\" class=\"wotcontainermiddle\">" +
+			"<td colspan=\"2\"></td>" +
+		"</tr>" +
+		"<tr id=\"wotbuttonstop\" class=\"wotcontainermiddle\">" +
+			"<td colspan=\"2\"></td>" +
+		"</tr>" +
+		"<tr id=\"wotbuttons\" class=\"wotcontainermiddle\">";
+
+		if(!wot.is_mobile) {
+			WOT_WARNING_HTML +=
+				"<td id=\"wotbuttonrate\">" +
+					"<span id=\"wotratebutton\" class=\"wotbutton\">{RATETEXT}</span>" +
+					"</td>";
+		}
+
+		WOT_WARNING_HTML +=
+			"<td id=\"wotbuttongoto\""+ (wot.is_mobile ? ' colspan="2">' : '>') +
+				"<span id=\"wotgotobutton\" class=\"wotbutton\">{GOTOTEXT}</span>" +
+				"</td>" +
+				"</tr>" +
+				"<tr id=\"wotcontainerbottom\">" +
+				"<td colspan=\"2\"></td>" +
+				"</tr>" +
+				"<tr id=\"wotlogo\">" +
+				"<td colspan=\"2\"></td>" +
+				"</tr>" +
+				"</table>";
+	},
+
 	minheight: 600,
+	min_mobile_height: 250,
 
 	getheight: function()
 	{
@@ -252,7 +265,9 @@ wot.warning = {
 
 			var warnclass = "";
 
-			if (this.getheight() < this.minheight) {
+			var minheight = wot.is_mobile ? this.min_mobile_height : this.minheight;
+
+			if (this.getheight() < minheight) {
 				warnclass = "wotnoratings";
 			}
 
@@ -322,6 +337,8 @@ wot.warning = {
 
 			wrapper.setAttribute("id", "wotwrapper");
 
+			if(wot.is_mobile) wrapper.setAttribute("class", "mobile");
+
 			warning = body[0].appendChild(warning);
 			wrapper = body[0].appendChild(wrapper);
 
@@ -334,12 +351,14 @@ wot.warning = {
 					wot.warning.navigate(url, wot.urls.contexts.warnviewsc);
 				}, false);
 
+			if(!wot.is_mobile) {
 			document.getElementById("wotratebutton").addEventListener("click",
 				function() {
 					var url = wot.urls.scorecard +
 						encodeURIComponent(data.target) + "/rate";
 					wot.warning.navigate(url, wot.urls.contexts.warnrate);
 				}, false);
+			}
 
 			document.getElementById("wotgotobutton").addEventListener("click",
 				function() {
@@ -360,6 +379,9 @@ wot.warning = {
 		if (window != window.top) {
 			return;
 		}
+
+		wot.detect_formfactor();
+		wot.warning.prepare_warnscreen();
 
 		/* wait for status updates and warn if necessary */
 		wot.bind("message:warning:show", function(port, data) {
