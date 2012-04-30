@@ -67,10 +67,6 @@
 	z-index: 2147483647 ! important;
 }
 
-#wotwrapper.mobile #wotcontainer {
-    width: 80% ! important;
-}
-
 #wotcontainer * {
 	background-color: transparent ! important;
 	border: 0 ! important;
@@ -99,18 +95,8 @@
 	background: url("../fusion/warnings/bg_warning_top.png") top center no-repeat ! important;
 }
 
-#wotwrapper.mobile #wotcontainertop td {
-    background-image: none ! important;
-    background-color:#ffffff ! important;
-}
-
 #wotcontainer .wotcontainermiddle {
 	background: url("../fusion/warnings/bg_warning_tile1px_center.png") top center repeat-y ! important;
-}
-
-#wotwrapper.mobile .wotcontainermiddle {
-    background-image: none ! important;
-    background-color:#ffffff ! important;
 }
 
 #wotcontainer #wotcontainerbottom {
@@ -121,11 +107,6 @@
 	background: url("../fusion/warnings/bg_warning_bottom.png") top center no-repeat ! important;
 }
 
-#wotwrapper.mobile #wotcontainerbottom td {
-    background-image: none !important;
-    background-color:#ffffff !important;
-}
-
 #wotcontainer .wotlimitwidth {
 	display: block;
 	margin-left: 10px ! important;
@@ -133,10 +114,6 @@
 	overflow: hidden ! important;
 	text-align: center ! important;
 	width: 637px ! important;
-}
-
-#wotwrapper.mobile .wotlimitwidth {
-    width: 100% !important;
 }
 
 #wotcontainer #wotdescriptiontext {
@@ -152,11 +129,6 @@
     line-height: normal !important;
 }
 
-#wotwrapper.mobile #wotdescriptiontext {
-    font-size: 48pt !important;
-    height: auto !important;
-}
-
 #wotcontainer #wotwebsite {
 	color: #666666 ! important;
 	font-family: "Tahoma", "Arial", sans-serif ! important;
@@ -165,20 +137,8 @@
 	height: 29px ! important;
 }
 
-#wotwrapper.mobile #wotwebsite {
-    color: #666666 !important;
-    font-size: 25pt !important;
-    line-height: normal !important;
-    height: auto !important;
-}
-
 #wotcontainer #wotinfo {
 	height: 33px ! important;
-}
-
-/* hide "view rating details and comments" on mobile phones */
-#wotwrapper.mobile #wotinfo {
-    display: none !important;
 }
 
 #wotcontainer.wotnoratings #wotinfo {
@@ -267,11 +227,6 @@
 	height: 2px ! important;
 }
 
-#wotwrapper.mobile #wotratingtop {
-    background-image: none ! important;
-    background-color: #ffffff ! important;
-}
-
 #wotcontainer #wotratingareatop {
 	height: 23px ! important;
 }
@@ -283,19 +238,9 @@
 	background: url("../fusion/warnings/bg_rating_tile1px_center.png") top center repeat-y ! important;
 }
 
-#wotwrapper.mobile .wotratingarea {
-    background-image: none ! important;
-    background-color: #ffffff ! important;
-}
-
 #wotcontainer .wotratingrow {
 	background: transparent ! important; /* chrome fix */
 	height: 40px ! important;
-}
-
-#wotwrapper.mobile .wotratingrow {
-    background: transparent ! important; /* chrome fix */
-    height: 2em ! important;
 }
 
 #wotcontainer .wotratingname, #wotcontainer .wotratingexpl {
@@ -305,14 +250,6 @@
 	line-height: 28px ! important;
 	vertical-align: middle ! important;
 }
-
-#wotwrapper.mobile #wotcontainer .wotratingname,
-#wotwrapper.mobile #wotcontainer .wotratingexpl {
-    font-size: 18pt !important;
-    height: 2em ! important;
-    line-height: normal !important;
-}
-
 
 #wotcontainer .wotratingname {
 	display: block;
@@ -372,18 +309,8 @@
 	background:  url("../fusion/warnings/bg_rating_tile1px_center.png") top left repeat-y ! important; /* chrome fix */
 }
 
-#wotwrapper.mobile .wotratingcolleft, #wotwrapper.mobile #wotbuttonrate {
-    background-image:  none !important;
-    background-color: #ffffff !important;
-}
-
 #wotcontainer .wotratingcolright, #wotbuttongoto {
 	background:  url("../fusion/warnings/bg_rating_tile1px_center.png") top right repeat-y ! important; /* chrome fix */
-}
-
-#wotwrapper.mobile .wotratingcolright, #wotwrapper.mobile #wotbuttongoto {
-    background-image:  none !important;
-    background-color: #ffffff !important;
 }
 
 #wotcontainer.wotnoratings #wotratingtop, #wotcontainer.wotnoratings .wotratingarea {
@@ -394,20 +321,12 @@
 	height: 1px ! important;
 }
 
-#wotwrapper.mobile #wotratingbottom {
-    display: none !important;
-}
-
 #wotcontainer #wotbuttonstop {
 	height: 11px ! important;
 }
 #wotcontainer #wotbuttons {
 	background: transparent ! important; /* chrome fix */
 	height: 40px ! important;
-}
-
-#wotwrapper.mobile #wotbuttons {
-    height: 6em !important;
 }
 
 #wotcontainer .wotbutton {
@@ -423,12 +342,6 @@
 	text-align: center ! important;
 }
 
-#wotwrapper.mobile .wotbutton {
-    font-size: 24pt !important;
-    height: 1.5em !important;
-    line-height: normal !important;
-}
-
 #wotcontainer #wotratebutton {
 	background: url("../fusion/warnings/rate_button.png") no-repeat center -80px ! important;
 	float: right ! important;
@@ -437,29 +350,12 @@
 	width: 284px ! important;
 }
 
-#wotwrapper.mobile #wotratebutton {
-    background-image: none !important;
-    background-color: #ffffff !important;
-    display: none !important;
-}
-
 #wotcontainer #wotgotobutton {
 	background: url("../fusion/warnings/go_to_button.png") no-repeat center -80px ! important;
 	float: left ! important;
 	margin-left: 3px ! important;
 	padding-right: 30px ! important;
 	width: 283px ! important;
-}
-
-#wotwrapper.mobile #wotgotobutton {
-    background-image: none !important;
-    background-color: #dcdcdc !important;
-    height: auto !important;
-    padding: 0.5em !important;
-    border-radius: 0.5em !important;
-    width: auto !important;
-    float: none !important;
-    margin: auto 2em !important;
 }
 
 #wotcontainer #wotratebutton:hover, #wotcontainer #wotgotobutton:hover {

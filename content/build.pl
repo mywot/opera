@@ -117,7 +117,8 @@ my $files = {
 
 my $styles = {
 	"skin/include/popup.css" => "",
-	"skin/include/warning.css" => ""
+	"skin/include/warning.css" => "",
+	"skin/include/warning_mobile.css" => ""
 };
 
 my $encoded = {};

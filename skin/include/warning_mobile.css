@@ -1,0 +1,124 @@
+/*
+	warning_mobile.css
+	Copyright © 2012  WOT Services Oy <info@mywot.com>
+
+	This file is part of WOT.
+
+	WOT is free software: you can redistribute it and/or modify it
+	under the terms of the GNU General Public License as published by
+	the Free Software Foundation, either version 3 of the License, or
+	(at your option) any later version.
+
+	WOT is distributed in the hope that it will be useful, but WITHOUT
+	ANY WARRANTY; without even the implied warranty of MERCHANTABILITY
+	or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public
+	License for more details.
+
+	You should have received a copy of the GNU General Public License
+	along with WOT. If not, see <http://www.gnu.org/licenses/>.
+*/
+
+#wotwrapper.mobile #wotcontainer {
+    width: 80% ! important;
+}
+
+#wotwrapper.mobile #wotcontainerbottom td {
+    background-image: none !important;
+    background-color:#ffffff !important;
+}
+
+#wotwrapper.mobile #wotcontainertop td {
+    background-image: none ! important;
+    background-color:#ffffff ! important;
+}
+
+#wotwrapper.mobile .wotcontainermiddle {
+    background-image: none ! important;
+    background-color:#ffffff ! important;
+}
+
+#wotwrapper.mobile .wotlimitwidth {
+    width: 100% !important;
+}
+
+#wotwrapper.mobile #wotdescriptiontext {
+    font-size: 48pt !important;
+    height: auto !important;
+}
+
+#wotwrapper.mobile #wotwebsite {
+    color: #666666 !important;
+    font-size: 25pt !important;
+    line-height: normal !important;
+    height: auto !important;
+}
+
+/* hide "view rating details and comments" on mobile phones */
+#wotwrapper.mobile #wotinfo {
+    display: none !important;
+}
+
+#wotwrapper.mobile #wotratingtop {
+    background-image: none ! important;
+    background-color: #ffffff ! important;
+}
+
+#wotwrapper.mobile .wotratingarea {
+    background-image: none ! important;
+    background-color: #ffffff ! important;
+}
+
+#wotwrapper.mobile .wotratingrow {
+    background: transparent ! important; /* chrome fix */
+    height: 2em ! important;
+}
+
+#wotwrapper.mobile #wotcontainer .wotratingname,
+#wotwrapper.mobile #wotcontainer .wotratingexpl {
+    font-size: 18pt !important;
+    height: 2em ! important;
+    line-height: normal !important;
+}
+
+#wotwrapper.mobile .wotratingcolleft,
+#wotwrapper.mobile #wotbuttonrate {
+    background-image:  none !important;
+    background-color: #ffffff !important;
+}
+
+#wotwrapper.mobile .wotratingcolright,
+#wotwrapper.mobile #wotbuttongoto {
+    background-image:  none !important;
+    background-color: #ffffff !important;
+}
+
+#wotwrapper.mobile #wotratingbottom {
+    display: none !important;
+}
+
+#wotwrapper.mobile #wotbuttons {
+    height: 6em !important;
+}
+
+#wotwrapper.mobile .wotbutton {
+    font-size: 24pt !important;
+    height: 1.5em !important;
+    line-height: normal !important;
+}
+
+#wotwrapper.mobile #wotratebutton {
+    background-image: none !important;
+    background-color: #ffffff !important;
+    display: none !important;
+}
+
+#wotwrapper.mobile #wotgotobutton {
+    background-image: none !important;
+    background-color: #dcdcdc !important;
+    height: auto !important;
+    padding: 0.5em !important;
+    border-radius: 0.5em !important;
+    width: auto !important;
+    float: none !important;
+    margin: auto 2em !important;
+}

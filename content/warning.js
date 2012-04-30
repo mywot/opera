@@ -315,7 +315,13 @@ wot.warning = {
 			}
 
 			style.setAttribute("type", "text/css");
-			style.innerText = wot.styles["skin/include/warning.css"];
+			var styles_content = wot.styles["skin/include/warning.css"];
+
+			if(wot.is_mobile) {
+				styles_content += wot.styles["skin/include/warning_mobile.css"];
+			}
+
+			style.innerText = styles_content;
 
 			head[0].appendChild(style);
 
