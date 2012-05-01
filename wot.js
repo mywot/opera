@@ -20,12 +20,12 @@
 
 var wot = {
 	version: 20120319,
-	platform: "opera",
+	platform: "opera",  /* could be changed to 'operamobile' */
 	language: "en",		/* default */
 	debug: false,
 	default_component: 0,
-	is_mobile: false,   // mobile or desktop
-	is_tablet: false,   // tablet or desktop
+	is_mobile: false,   // Opera Mobile on phone
+	is_tablet: false,   // Opera Mobile on tablet
 
 	components: [
 		{ name: 0 },
