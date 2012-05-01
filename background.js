@@ -84,7 +84,8 @@ $.extend(wot, { core: {
 
 				/* additional classes */
 				if (result != "rx") {
-					if (this.unseenmessage()) {
+					// don't show "message" badge on Tablets (there is no rating window for now)
+					if (this.unseenmessage() && !wot.is_tablet) {
 						result = "message_" + result;
 					} else if (result != "r0" &&
 								!wot.components.some(function(item) {
