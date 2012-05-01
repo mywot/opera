@@ -114,7 +114,7 @@ $.extend(wot, { core: {
 	{
 		if(this.button) {
 			try {
-				this.button.icon = wot.geticon(this.geticon(data), 19,
+				this.button.icon = wot.geticon(this.geticon(data), wot.button_icon_size,
 										wot.prefs.get("accessible"));
 			} catch (e) {
 				wot.log("core.seticon: failed with " + e, true);
@@ -479,10 +479,13 @@ $.extend(wot, { core: {
 			if(wot.is_mobile) {
 				this.button = null;
 			} else {
+				var icon_path = "skin/fusion/" + wot.button_icon_size + "_" +
+					wot.button_icon_size + "/default.png";
+
 				var options = {
 					disabled: false,
 					title: "WOT",
-					icon: "skin/fusion/19_19/default.png"
+					icon: icon_path
 				};
 
 				/* Don't open rating window in Opera Mobile (temporary) */

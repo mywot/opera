@@ -105,6 +105,15 @@ var wot = {
 		link:	4
 	},
 
+	/* icon size for add-on's button */
+	icons: {
+		default: 19,
+		mobile: 48,
+		tablet: 48
+	},
+
+	button_icon_size: 19,   /* to be changed to other value from icons */
+
 	/* logging */
 
 	log: function(s, force)
@@ -117,13 +126,16 @@ var wot = {
 	detect_formfactor: function()
 	{
 		var app = window.navigator.appVersion;
+		wot.button_icon_size = wot.icons.default;   // set it to default
 
 		if(app && app.indexOf("Opera Mobi") > 0) {
 			wot.is_mobile = true;
 			wot.is_tablet = false;
+			wot.button_icon_size = wot.icons.mobile;
 		} else if(app && app.indexOf("Opera Tablet") > 0) {
 			wot.is_mobile = false;
 			wot.is_tablet = true;
+			wot.button_icon_size = wot.icons.tablet;
 		}
 	},
 
