@@ -1,6 +1,6 @@
 /*
 	prefs.js
-	Copyright © 2009-2011  WOT Services Oy <info@mywot.com>
+	Copyright © 2009 - 2012  WOT Services Oy <info@mywot.com>
 
 	This file is part of WOT.
 
@@ -38,6 +38,7 @@ $.extend(wot, { prefs: {
 		show_application_4:		true,
 		show_search_popup:		true,
 		use_search_level:		false,
+		ninja_donuts:           true,
 		status_level:			"",
 		warning_level_0:		wot.reputationlevels[4].min - 1,
 		warning_level_1:		wot.reputationlevels[4].min - 1,
