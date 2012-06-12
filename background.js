@@ -202,7 +202,7 @@ $.extend(wot, { core: {
 					}, tab);
 			}
 		} catch (e) {
-			wot.log("core.updatetabwarning: failed with " + e);
+			wot.log("core.updatetabwarning: failed with " + e, true);
 		}
 	},
 
@@ -324,6 +324,14 @@ $.extend(wot, { core: {
 			wot.detect_formfactor();
 
 			/* messages */
+
+//			opera.extension.onconnect = function(e) {
+//				wot.manage_connections(e, true);
+//			};
+//
+//			opera.extension.ondisconnect = function(e) {
+//				wot.manage_connections(e, false);
+//			};
 
 			wot.bind("message:search:hello", function(port, data) {
 				wot.core.processrules(data.url, function(rule) {

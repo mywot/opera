@@ -200,6 +200,8 @@ var wot = {
 
 	ports: {},
 
+	connections: {},
+
 	messagehandler: function(e)
 	{
 		var name = e.data.message.slice(0, e.data.message.indexOf(":"));
@@ -233,6 +235,9 @@ var wot = {
 
 		opera.extension.addEventListener("message",
 				this.messagehandler, false);
+
+		// Opera 12 & Mobile
+		opera.extension.onmessage = this.messagehandler;
 	},
 
 	connect: function(name)
@@ -255,6 +260,12 @@ var wot = {
 		} else if (opera.extension.postMessage) {
 			opera.extension.postMessage(data);
 		}
+	},
+
+	manage_connections: function(event, add_conn)
+	{
+		//var dumb_workaround = JSON.stringify(event);
+//		opera.postError("connections: " + JSON.stringify(event));
 	},
 
 	/* i18n */
