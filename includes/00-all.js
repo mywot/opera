@@ -26,7 +26,7 @@
 */
 
 var wot = {
-	version: 20120319,
+	version: 20120718,
 	platform: "opera",
 	language: "en",		/* default */
 	debug: false,
@@ -3849,8 +3849,10 @@ wot.search = {
 
 			var r = this.getreputation(obj);
 
-			if (this.settings.use_search_level &&
-					r >= this.settings.search_level) {
+			if ((this.settings.use_search_level &&
+					r >= this.settings.search_level) ||
+					(rule.searchlevel != null &&
+						r >= rule.searchlevel)) {
 				return css;
 			}
 
