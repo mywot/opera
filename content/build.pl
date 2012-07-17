@@ -106,10 +106,12 @@ my $files = {
 	"_locales/fr/warning.png" => { type => "image/png" },
 	"_locales/it/warning.png" => { type => "image/png" },
 	"_locales/ja/warning.png" => { type => "image/png" },
+	"_locales/ko/warning.png" => { type => "image/png" },
 	"_locales/pl/warning.png" => { type => "image/png" },
 	"_locales/pt_BR/warning.png" => { type => "image/png" },
 	"_locales/ru/warning.png" => { type => "image/png" },
 	"_locales/sv/warning.png" => { type => "image/png" },
+	"_locales/tr/warning.png" => { type => "image/png" },
 	"_locales/zh_CN/warning.png" => { type => "image/png" },
 	"_locales/zh_TW/warning.png" => { type => "image/png" }
 };

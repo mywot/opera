@@ -33,7 +33,8 @@ $.extend(wot, { locale: {
 	  	"pt_br": "pt_BR",
 	  	"ru": "ru",
 	  	"sv": "sv",
-	  	"zh_cn": "zh_CN",
+		"tr": "tr",
+		"zh_cn": "zh_CN",
 	  	"zh_tw": "zh_TW"
 	},
 
