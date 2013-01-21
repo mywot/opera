@@ -3874,7 +3874,7 @@ wot.search = {
 			for (var i = 0; i < frame.document.links.length; ++i) {
 				var link = frame.document.links[i];
 
-				if (!link.parentNode || !link.href ||
+				if (link.isContentEditable || !link.parentNode || !link.href ||
 						link.getAttribute(this.getattrname("processed"))) {
 					continue;
 				}
