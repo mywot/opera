@@ -54,13 +54,13 @@
 		"message": "Активация WOT…"
 	},
 	"messages_failed": {
-		"message": "Не удалось загрузить рейтинги."
+		"message": "Не удалось загрузить оценки."
 	},
 	"messages_notavailable": {
-		"message": "Рейтинги не доступны."
+		"message": "Оценки не доступны."
 	},
 	"messages_loading": {
-		"message": "Загрузка рейтингов…"
+		"message": "Загрузка оценок…"
 	},
 	"ratingwindow_settings": {
 		"message": "Настройки"
@@ -69,16 +69,16 @@
 		"message": "Руководство"
 	},
 	"ratingwindow_wotrating": {
-		"message": "Рейтинг WOT"
+		"message": "Оценка от WOT"
 	},
 	"ratingwindow_myrating": {
-		"message": "Мой рейтинг"
+		"message": "Моя оценка"
 	},
 	"ratingwindow_viewscorecard": {
-		"message": "Посмотреть подробности рейтинга"
+		"message": "Посмотреть подробности оценок"
 	},
 	"ratingwindow_addcomment": {
-		"message": "(или добавить свой комментарий)"
+		"message": "добавить свой комментарий"
 	},
 	"ratingwindow_inpartnership": {
 		"message": "Сотрудничает с"
@@ -93,10 +93,10 @@
 		"message": "Добавить комментарий?"
 	},
 	"warnings_information": {
-		"message": "Посмотреть сведения о рейтинге и комментарии"
+		"message": "Посмотреть оценки и комментарии"
 	},
 	"warnings_ratesite": {
-		"message": "Этот сайт безопасен. Я хочу оценить его"
+		"message": "Доверяете этому сайту? Оцените его"
 	},
 	"warnings_gotosite": {
 		"message": "Открыть сайт, несмотря на предупреждение"
@@ -105,9 +105,9 @@
 		"message": "У этого сайта плохая репутация"
 	},
 	"warnings_rating": {
-		"message": "Вы выставили этому сайту низкий рейтинг"
+		"message": "Вы дали этому сайту низкую оценку"
 	},
 	"warnings_unknown": {
-		"message": "Pейтинг этого сайта неизвестен"
+		"message": "Репутация этого сайта неизвестна"
 	}
 }
