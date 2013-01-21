@@ -16,6 +16,7 @@
 	<description xml:lang="zh-TW">Web of Trust 能維護您在網路上瀏覽與購物的安全性。 WOT 的顏色編碼標誌能幫助您在點擊之前避免線上詐騙、盜用身分、不可靠的購物網站與安全威脅。 讓您更安全地瀏覽網路，現在就將 WOT 加入您的 Opera 吧。</description>
 	<description xml:lang="sv">Med Web of Trust kan du vara säker när du surfar och handlar på Internet. WOT hjälper dig att undvika onlinebedrägerier, identitetsstöld, opålitliga onlinebutiker och säkerhetsrisker redan innan du klickar.</description>
     <description xml:lang="tr">Web of Trust   Web'te gezerken, alışveriş yaparken ve ararken insanların hangi siteleri güvenli bulduklarını gösterir.</description>
+    <description xml:lang="uk">WOT допомагає знайти надійні сайти на основі досвіду мільйонів користувачів і є одним з найпопулярніших розширень в Chrome.</description>
     <author href="http://www.mywot.com/" email="info@mywot.com">WOT Services Oy</author>
 	<icon src="skin/fusion/icons/128.png"/>
     <feature name="opera:share-cookies" required="true"/>

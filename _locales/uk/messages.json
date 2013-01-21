@@ -1,0 +1,131 @@
+{
+	"locale": {
+		"message": "uk"
+	},
+	"lang": {
+		"message": "uk-UA"
+	},
+	"ext_description": {
+		"message": "WOT допомагає знайти надійні сайти на основі досвіду мільйонів користувачів і є одним з найпопулярніших розширень в Chrome."
+	},
+	"components_0": {
+		"message": "Заслуговує довіри"
+	},
+	"components_1": {
+		"message": "Надійність продавця"
+	},
+	"components_2": {
+		"message": "Конфіденційність"
+	},
+	"components_4": {
+		"message": "Безпека для дітей"
+	},
+	"components__short_0": {
+		"message": "Заслуговує довіри"
+	},
+	"components__short_1": {
+		"message": "Надійність продавця"
+	},
+	"components__short_2": {
+		"message": "Приватність"
+	},
+	"components__short_4": {
+		"message": "Безпека для дітей"
+	},
+	"reputationlevels_r0": {
+		"message": ""
+	},
+	"reputationlevels_r1": {
+		"message": "Дуже погано"
+	},
+	"reputationlevels_r2": {
+		"message": "Погано"
+	},
+	"reputationlevels_r3": {
+		"message": "Незадовільно"
+	},
+	"reputationlevels_r4": {
+		"message": "Добре"
+	},
+	"reputationlevels_r5": {
+		"message": "Відмінно"
+	},
+	"messages_initializing": {
+		"message": "Ініціалізація WOT…"
+	},
+	"messages_notready": {
+		"message": "Активація WOT…"
+	},
+	"messages_failed": {
+		"message": "Не вдалося завантажити рейтинги; повторна спроба незабаром."
+	},
+	"messages_notavailable": {
+		"message": "Рейтинги недоступні."
+	},
+	"messages_loading": {
+		"message": "Завантаження рейтингів…"
+	},
+	"ratingwindow_settings": {
+		"message": "Налаштування"
+	},
+	"ratingwindow_guide": {
+		"message": "Керівництво"
+	},
+	"ratingwindow_wotrating": {
+		"message": "Рейтинг WOT"
+	},
+	"ratingwindow_myrating": {
+		"message": "Мій рейтинг"
+	},
+	"ratingwindow_viewscorecard": {
+		"message": "Переглянути детальніше про рейтинг"
+	},
+	"ratingwindow_addcomment": {
+		"message": "Додайте свій коментар"
+	},
+	"ratingwindow_inpartnership": {
+		"message": "У партнерстві з"
+	},
+	"ratingwindow_newversion": {
+		"message": "Доступна нова версія - натисніть для оновлення"
+	},
+	"ratingwindow_helptext": {
+		"message": "Ваш рейтинг відрізняється."
+	},
+	"ratingwindow_helplink": {
+		"message": "Залишіть коментар?"
+	},
+	"warnings_information": {
+		"message": "Переглянути рейтинг і коментарі"
+	},
+	"warnings_ratesite": {
+		"message": "Цей сайт є безпечним - Я хочу оцінити його"
+	},
+	"warnings_gotosite": {
+		"message": "Ігнорувати попередження і зайти на сайт"
+	},
+	"warnings_reputation": {
+		"message": "Цей сайт має погану репутацію<br/>на основі рейтингів користувачів"
+	},
+	"warnings_rating": {
+		"message": "Ви дали цьому сайту низький рейтинг"
+	},
+	"warnings_unknown": {
+		"message": "Цей сайт має невідомий рейтинг"
+	},
+	"warnings_warning": {
+		"message": "Попередження!"
+	},
+	"warnings_goto": {
+		"message": "Перейти на сайт"
+	},
+	"warnings_leave": {
+		"message": "Залишити сайт"
+	},
+	"warnings_back": {
+		"message": "Повернутися назад"
+	},
+	"contextmenu_open_scorecard": {
+		"message": "Відкрити оціночну карту WOT"
+	}
+}

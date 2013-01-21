@@ -35,7 +35,8 @@ $.extend(wot, { locale: {
 	  	"sv": "sv",
 		"tr": "tr",
 		"zh_cn": "zh_CN",
-	  	"zh_tw": "zh_TW"
+	  	"zh_tw": "zh_TW",
+		"uk": "uk"
 	},
 
 	loadlocale: function(ondone)
