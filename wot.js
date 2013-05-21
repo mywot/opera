@@ -19,7 +19,7 @@
 */
 
 var wot = {
-	version: 20130121,
+	version: 20130521,
 	platform: "opera",
 	language: "en",		/* default */
 	debug: false,

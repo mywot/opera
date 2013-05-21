@@ -73,9 +73,9 @@ wot.popup = {
 
 			parentelem = parentelem || frame.document.body;
 
-			if (!parentelem) {
-				return;
-			}
+            if (!parentelem || parentelem.isContentEditable) {
+                return;
+            }
 
 			var style = frame.document.createElement("style");
 

@@ -7,7 +7,7 @@
 
 /*
 	wot.js
-	Copyright © 2009 - 2012  WOT Services Oy <info@mywot.com>
+	Copyright © 2009 - 2013  WOT Services Oy <info@mywot.com>
 
 	This file is part of WOT.
 
@@ -26,7 +26,7 @@
 */
 
 var wot = {
-	version: 20120718,
+	version: 20130521,
 	platform: "opera",
 	language: "en",		/* default */
 	debug: false,
@@ -3153,9 +3153,9 @@ wot.popup = {
 
 			parentelem = parentelem || frame.document.body;
 
-			if (!parentelem) {
-				return;
-			}
+            if (!parentelem || parentelem.isContentEditable) {
+                return;
+            }
 
 			var style = frame.document.createElement("style");
 
